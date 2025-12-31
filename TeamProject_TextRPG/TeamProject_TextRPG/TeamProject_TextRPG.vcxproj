@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AttackBoost.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Global.h" />
@@ -137,6 +138,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AttackBoost.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Goblin.cpp" />

@@ -3,5 +3,7 @@
 
 class Slime : public Monster
 {
+public:
+	Slime(int level);
+	void Attack(Character& character);
 };
-

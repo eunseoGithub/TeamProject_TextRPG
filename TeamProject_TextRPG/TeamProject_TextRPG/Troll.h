@@ -3,5 +3,7 @@
 
 class Troll : public Monster
 {
+public:
+	Troll(int level);
+	void Attack(Character& character);
 };
-

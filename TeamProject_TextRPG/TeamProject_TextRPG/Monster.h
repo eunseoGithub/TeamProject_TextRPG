@@ -5,13 +5,17 @@
 class Monster
 {
 public:
-	virtual string GetName() = 0;
-	virtual int GetHealth() = 0;
-	virtual int GetAttack() = 0;
-	virtual void TakeDamage(int damage) = 0;
+	string GetName();
+	int GetHealth();
+	int GetAttack();
+	void TakeDamage(int damage);
 	virtual void Attack(Character& character) = 0;
-	virtual void Dead() = 0;
-	virtual bool GetIsAlive() = 0;
-	virtual void SetIsAlive(bool alive) = 0;
+	void Dead();
+	bool GetIsAlive();
+	void SetIsAlive(bool alive);
+protected:
+	string name;
+	int health;
+	int attack;
+	bool isAlive;
 };
-

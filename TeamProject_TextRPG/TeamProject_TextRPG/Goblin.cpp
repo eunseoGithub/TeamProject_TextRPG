@@ -13,48 +13,8 @@ Goblin::Goblin(int level)
 	attack = rand() % (maxAttack - minAttack + 1) + minAttack;
 }
 
-string Goblin::GetName()
-{
-	return name;
-}
-
-int Goblin::GetHealth()
-{
-	return health;
-}
-
-int Goblin::GetAttack()
-{
-	return attack;
-}
-
-void Goblin::TakeDamage(int damage)
-{
-	health -= damage;
-	if (health <= 0) 
-	{
-		isAlive = false;
-	}
-
-	cout << name << "(이)가 " << damage << "만큼 데미지를 입었습니다!" << endl;
-}
-
 void Goblin::Attack(Character& character)
 {
-	//character.TakeDamage(attack);
+	character.TakeDamage(attack);
 }
 
-void Goblin::Dead()
-{
-	cout << name << "(이)가 죽었습니다!" << endl;
-}
-
-bool Goblin::GetIsAlive()
-{
-	return isAlive;
-}
-
-void Goblin::SetIsAlive(bool alive)
-{
-	isAlive = alive;
-}

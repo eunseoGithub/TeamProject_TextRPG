@@ -3,5 +3,7 @@
 
 class Orc : public Monster
 {
+public:
+	Orc(int level);
+	void Attack(Character& character);
 };
-
