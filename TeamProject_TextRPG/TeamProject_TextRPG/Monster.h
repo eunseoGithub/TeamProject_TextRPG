@@ -1,10 +1,12 @@
 #pragma once
 #include"Global.h"
 #include "Character.h"
-
+class Character;
 class Monster
 {
 public:
+	Monster(){}
+	Monster(int level);
 	string GetName();
 	int GetHealth();
 	int GetAttack();
@@ -13,6 +15,7 @@ public:
 	void Dead();
 	bool GetIsAlive();
 	void SetIsAlive(bool alive);
+	virtual ~Monster() = default;
 protected:
 	string name;
 	int health;

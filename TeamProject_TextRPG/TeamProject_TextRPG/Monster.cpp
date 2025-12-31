@@ -1,5 +1,7 @@
 #include "Monster.h"
 
+Monster::Monster(int level){}
+
 string Monster::GetName()
 {
 	return name;

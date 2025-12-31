@@ -3,6 +3,8 @@
 #include "Monster.h"
 #include "Item.h"
 #include <vector>
+class Item;
+class Monster;
 class Character
 {
 public:

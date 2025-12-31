@@ -16,7 +16,7 @@ Character::Character(string name)
 
 void Character::PrintCharacterStatus()
 {
-	cout << "이름 : " << name << "레벨 : " << level << "체력 : " << hp << "공격력 : " << attack << endl;
+	cout << "이름 : " << name << "\n레벨 : " << level << "\n체력 : " << hp << "\n공격력 : " << attack << endl;
 }
 
 //공격 하기
@@ -75,6 +75,9 @@ void Character::LevelUp()
 void Character::DrinkPotion()
 {
 	cout << name << "아이템을 사용했습니다." << endl;
+	Item* item = inventory.back();
+	inventory.pop_back();
+	item->Use();
 }
 
 void Character::Heal(int amount)
