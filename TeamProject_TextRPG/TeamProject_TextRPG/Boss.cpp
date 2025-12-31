@@ -21,48 +21,7 @@ Boss::Boss(int level)
 	cout << "["<< name << "] : 내 앞을 가로막은 대가는... 오직 죽음뿐이다." << endl;*/
 }
 
-string Boss::GetName()
-{
-	return name;
-}
-
-int Boss::GetHealth()
-{
-	return health;
-}
-
-int Boss::GetAttack()
-{
-	return attack;
-}
-
-void Boss::TakeDamage(int damage)
-{
-	health -= damage;
-	if (health <= 0)
-	{
-		isAlive = false;
-	}
-
-	cout << name << "(이)가 " << damage << "만큼 데미지를 입었습니다!" << endl;
-}
-
 void Boss::Attack(Character& character)
 {
 	character.TakeDamage(attack);
-}
-
-void Boss::Dead()
-{
-	cout << name << "(이)가 죽었습니다!" << endl;
-}
-
-bool Boss::GetIsAlive()
-{
-	return isAlive;
-}
-
-void Boss::SetIsAlive(bool alive)
-{
-	isAlive = alive;
 }

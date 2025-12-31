@@ -13,48 +13,8 @@ Troll::Troll(int level)
 	attack = rand() % (maxAttack - minAttack + 1) + minAttack;
 }
 
-string Troll::GetName()
-{
-	return name;
-}
-
-int Troll::GetHealth()
-{
-	return health;
-}
-
-int Troll::GetAttack()
-{
-	return attack;
-}
-
-void Troll::TakeDamage(int damage)
-{
-	health -= damage;
-	if (health <= 0) 
-	{
-		isAlive = false;
-	}
-
-	cout << name << "(이)가 " << damage << "만큼 데미지를 입었습니다!" << endl;
-}
-
 void Troll::Attack(Character& character)
 {
 	character.TakeDamage(attack);
 }
 
-void Troll::Dead()
-{
-	cout << name << "(이)가 죽었습니다!" << endl;
-}
-
-bool Troll::GetIsAlive()
-{
-	return isAlive;
-}
-
-void Troll::SetIsAlive(bool alive)
-{
-	isAlive = alive;
-}
