@@ -41,7 +41,7 @@ void Goblin::TakeDamage(int damage)
 
 void Goblin::Attack(Character& character)
 {
-	//character.TakeDamage(attack);
+	character.TakeDamage(attack);
 }
 
 void Goblin::Dead()
