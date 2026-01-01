@@ -11,6 +11,7 @@ Goblin::Goblin(int level)
 	int maxAttack = level * 10;
 	int minAttack = level * 5;
 	attack = rand() % (maxAttack - minAttack + 1) + minAttack;
+	PrintMonsterStatus();
 }
 
 void Goblin::Attack(Character& character)

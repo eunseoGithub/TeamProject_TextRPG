@@ -10,13 +10,21 @@ Character::Character(string name)
 
 	experience = 0;
 	gold = 0;
-
+	bonusAttack = 0;
 	isAlive = true;
 }
 
 void Character::PrintCharacterStatus()
 {
-	cout << "이름 : " << name << "레벨 : " << level << "체력 : " << hp << "공격력 : " << attack << endl;
+	cout << "===========================\n";
+	cout << "   [ 캐 릭 터 스 텟 창 ]                         \n";
+	cout << "===========================\n";
+	cout << "이름 : " << name << endl;
+	cout << "레벨 : " << level << endl;
+	cout << "HP : " << hp << "/" << maxhp << endl;
+	cout << "공격력 : " << attack << endl;
+	cout << "보유 골드 : " << gold << endl;
+	cout << "===========================\n";
 }
 
 //공격 하기
@@ -35,13 +43,13 @@ void Character::TakeDamage(int damage)
 		isAlive = false;
 		Dead();
 	}
-	cout << name << "데미지를 입었습니다." << "남은 hp :" << hp << endl;
+	cout << name << "이(가) 데미지를 입었습니다." << "남은 hp :" << hp << endl;
 }
 
 //죽음
 void Character::Dead()
 {
-	cout << name << "죽었습니다." << endl;
+	cout << name << "이(가) 죽었습니다." << endl;
 }
 
 //경험치
@@ -49,6 +57,11 @@ void Character::AddExperience(int amount)
 {
 	experience += amount;
 	CheckLevelUp();
+}
+
+void Character::AddGold(int amount)
+{
+	gold += amount;
 }
 
 // 경험치 체크, 레벨업
@@ -68,13 +81,24 @@ void Character::LevelUp()
 	hp = maxhp;
 	attack += 5;
 
-	cout << name << "레벨 업! 현재 레벨 : " << level << endl;
+	cout << name << "***레벨 업! 현재 레벨 : " << level  << "***" << endl;
 }
 
 //아이템 포션
 void Character::DrinkPotion()
 {
-	cout << name << "아이템을 사용했습니다." << endl;
+	cout << name << "이(가) 아이템 사용을 시도합니다." << endl;
+	if (inventory.empty())
+	{
+		cout << name << "이(가) 사용할 아이템이 없습니다." << endl << endl;
+		return;
+	}
+	cout << name << "이(가) 아이템을 사용했습니다." << endl;
+	Item* item = inventory.back();
+	inventory.pop_back();
+	item->Use(*this);
+	
+	delete item;
 }
 
 void Character::Heal(int amount)
@@ -89,12 +113,17 @@ void Character::Heal(int amount)
 
 void Character::AddTempAttack(int amount)
 {
+	bonusAttack = amount;
 	attack += amount;
 }
 
-void Character::ResetTempAttack(int amount)
+void Character::ResetTempAttack()
 {
-	attack -= amount;
+	if (bonusAttack != 0)
+	{
+		attack -= bonusAttack;
+		bonusAttack = 0;
+	}
 }
 
 //인벤토리
@@ -108,33 +137,9 @@ vector<Item*>& Character::GetInventory()
 	return inventory;
 }
 
-string Character::GetName()
-{
-	return name;
-}
 int Character::GetLevel()
 {
 	return level;
-}
-int Character::GetHp()
-{
-	return hp;
-}
-int Character::GetMaxHp()
-{
-	return maxhp;
-}
-int Character::GetAttack()
-{
-	return attack;
-}
-int Character::GetExperience()
-{
-	return experience;
-}
-int Character::GetGold()
-{
-	return gold;
 }
 
 bool Character::GetIsAlive()
@@ -142,32 +147,3 @@ bool Character::GetIsAlive()
 	return isAlive;
 }
 
-
-void Character::SetName(string name)
-{
-	this->name = name;
-}
-void Character::SetHp(int hp)
-{
-	this->hp = hp;
-}
-void Character::SetMaxHp(int maxhp)
-{
-	this->maxhp = maxhp;
-}
-void Character::SetAttack(int attack)
-{
-	this->attack = attack;
-}
-void Character::SetExperience(int experience)
-{
-	this->experience = experience;
-}
-void Character::SetGold(int gold)
-{
-	this->gold = gold;
-}
-void Character::SetIsAlive(bool isAlive)
-{
-	this->isAlive = isAlive;
-}
