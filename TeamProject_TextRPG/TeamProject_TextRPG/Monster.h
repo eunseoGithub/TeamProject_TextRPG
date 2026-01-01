@@ -6,7 +6,7 @@ class Monster
 {
 public:
 	Monster(){}
-	Monster(int level);
+	//Monster(int level);
 	string GetName();
 	int GetHealth();
 	int GetAttack();
@@ -16,6 +16,7 @@ public:
 	bool GetIsAlive();
 	void SetIsAlive(bool alive);
 	virtual ~Monster() = default;
+	void PrintMonsterStatus();
 protected:
 	string name;
 	int health;

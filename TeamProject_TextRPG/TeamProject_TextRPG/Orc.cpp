@@ -11,6 +11,7 @@ Orc::Orc(int level)
 	int maxAttack = level * 10;
 	int minAttack = level * 5;
 	attack = rand() % (maxAttack - minAttack + 1) + minAttack;
+	PrintMonsterStatus();
 }
 
 void Orc::Attack(Character& character)

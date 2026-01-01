@@ -13,6 +13,6 @@ std::string HealthPotion::GetName() const
 
 void HealthPotion::Use(Character& character)
 {
-	// character.Heal(healAmount); // 캐릭터 함수 확인 필요
-	std::cout << "체력 포션을 사용했습니다.\n";
+	character.Heal(healAmount);
+	std::cout << "체력 포션을 사용했습니다.\n\n";
 }

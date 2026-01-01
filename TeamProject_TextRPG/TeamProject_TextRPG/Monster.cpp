@@ -1,6 +1,6 @@
 #include "Monster.h"
 
-Monster::Monster(int level){}
+//Monster::Monster(int level){}
 
 string Monster::GetName()
 {
@@ -40,4 +40,15 @@ bool Monster::GetIsAlive()
 void Monster::SetIsAlive(bool alive)
 {
 	isAlive = alive;
+}
+
+void Monster::PrintMonsterStatus()
+{
+	cout << "===========================\n";
+	cout << "   [ 몬스터 스 텟 창 ]                         \n";
+	cout << "===========================\n";
+	cout << "이름 : " << name << endl;
+	cout << "공격력 : " << attack << endl;
+	cout << "HP : " << health << endl;
+	cout << "===========================\n";
 }

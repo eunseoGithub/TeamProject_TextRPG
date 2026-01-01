@@ -1,5 +1,8 @@
 #pragma once
 #include <vector>
+#include <thread>
+#include <chrono>
+#include <cstdlib>
 #include "Monster.h"
 #include "Character.h"
 #include "Global.h"
@@ -18,15 +21,21 @@ public:
 	bool CreateCharacter();
 	void GenerateMonster(int level);
 	bool GamePlay();
-	void Render();
+	void Render()const;
 private:
 	void CharacterAct();
 	void MonsterAct();
-	const void DisplayInventory();
+	void DisplayInventory()const;
 	void GameWin();
 	void GameLose();
+	void ClearScreen()const;
+	void PrintTotalMonster()const;
+	bool HandleMonsterDefeat();
+	bool HandleCharacterDefeat();
+	void DeleteMember();
 private:
 	Character* character;
 	Monster* currentMonster;
+	vector<string> totalMonster;
 };
 

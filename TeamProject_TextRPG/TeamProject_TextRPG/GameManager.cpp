@@ -1,5 +1,14 @@
 #include "GameManager.h"
 
+static void WaitMs(int ms) {
+	this_thread::sleep_for(std::chrono::milliseconds(ms));
+}
+
+void GameManager::ClearScreen() const
+{
+	system("cls");
+}
+
 GameManager::GameManager()
 {
 	srand(time(NULL));
@@ -33,53 +42,38 @@ void GameManager::GenerateMonster(int level)
 		cout << "몬스터 생성에 오류가 발생했습니다." << endl;
 	}
 	currentMonster = randMonster;
+	if (currentMonster != nullptr)
+	{
+		totalMonster.push_back(currentMonster->GetName());
+	}
 }
 
 bool GameManager::GamePlay()
 {
 	GenerateMonster(character->GetLevel());
+	
 	while (true)
 	{
 		CharacterAct();
-		MonsterAct();
-		if (!character->GetIsAlive())
-		{
-			character->Dead();
-			GameLose();
-			return false;
-		}
-		if (!currentMonster->GetIsAlive())
-		{
-			currentMonster->Dead();
-			character->AddExperience(50);
-			
-			int randomGold = rand() % 11 + 10;
-			character->SetGold(character->GetGold() + randomGold);
-
-			if (rand() % 10 < 3)
-			{
-				Item* item;
-				if (rand() % 2 == 0)
-				{
-					item = new AttackBoost();
-				}
-				else
-				{
-					item = new HealthPotion();
-				}
-				character->AddItem(item);
-			}
-
-			currentMonster = nullptr;
+		WaitMs(300);
+		
+		if (!HandleMonsterDefeat())
 			break;
-		}
-		if (character->GetLevel() >= 10)
-			return true;
+		
+		MonsterAct();
+		WaitMs(300);
+		
+		if (!HandleCharacterDefeat())
+			return false;
+		
+		WaitMs(300);
+		
 	}
+	character->ResetTempAttack();
 	return true;
 }
 
-const void GameManager::DisplayInventory()
+void GameManager::DisplayInventory()const
 {
 	const vector<Item*>& inventory = character->GetInventory();
 
@@ -104,7 +98,7 @@ const void GameManager::DisplayInventory()
 bool GameManager::CreateCharacter()
 {
 	cout << "\n===========================\n";
-	cout << "     [ 새로운 모험가 생성 ]                 \n";
+	cout << "  [ 새로운 모험가 생성 ]                 \n";
 	cout << "===========================\n";
 	cout << "캐릭터의 이름을 정해주세요 : ";
 	string name;
@@ -118,34 +112,124 @@ bool GameManager::CreateCharacter()
 	return true;
 }
 
-
 void GameManager::CharacterAct()
 {
 	if (rand() % 2 == 0)
 	{
 		character->Attack(*currentMonster);
+		WaitMs(300);
+		Render();
 	}
 	else
 	{
 		character->DrinkPotion();
+		WaitMs(300);
+		Render();
 	}
 }
+
 void GameManager::MonsterAct()
 {
 	currentMonster->Attack(*character);
+	WaitMs(300);
+	Render();
 }
-void GameManager::Render()
+
+void GameManager::Render() const
 {
+	ClearScreen();
 	DisplayInventory();
 	character->PrintCharacterStatus();
+	if (currentMonster != nullptr)
+	{
+		currentMonster->PrintMonsterStatus();
+	}
 }
 
 void GameManager::GameWin()
 {
 	cout << "게임에서 승리했습니다." << endl;
+	PrintTotalMonster();
+	DeleteMember();
 }
 
 void GameManager::GameLose()
 {
 	cout << "게임에서 패배했습니다." << endl;
+	PrintTotalMonster();
+	DeleteMember();
+}
+
+void GameManager::PrintTotalMonster() const
+{
+	if (totalMonster.empty())
+	{
+		cout << "잡은 몬스터가 없습니다." << endl;
+		return;
+	}
+	cout << "\n===========================\n";
+	cout << "  [ 싸운 몬스터 목록 ]                 \n";
+	cout << "===========================\n";
+	int index = 1;
+	for (auto& mon : totalMonster)
+	{
+		cout << index++ << ". " << mon << endl;
+	}
+}
+
+bool GameManager::HandleMonsterDefeat()
+{
+	if (currentMonster == nullptr)
+	{
+		return false;
+	}
+	if (!currentMonster->GetIsAlive())
+	{
+		currentMonster->Dead();
+		character->AddExperience(50);
+		WaitMs(300);
+		int randomGold = rand() % 11 + 10;
+		character->AddGold(randomGold);
+
+		if (rand() % 10 < 3)
+		{
+			Item* item = (rand() % 2 == 0) ? (Item*)new AttackBoost() : (Item*)new HealthPotion();
+			character->AddItem(item);
+		}
+		delete currentMonster;
+		currentMonster = nullptr;
+		return false;
+	}
+	return true;
+}
+
+bool GameManager::HandleCharacterDefeat()
+{
+	if (!character->GetIsAlive())
+	{
+		character->Dead();
+		GameLose();
+		WaitMs(300);
+		return false;
+	}
+	if (character->GetLevel() >= 10)
+	{
+		GameWin();
+		return false;
+	}
+	return true;
+}
+
+void GameManager::DeleteMember()
+{
+	if (currentMonster != nullptr)
+	{
+		delete currentMonster;
+		currentMonster = nullptr;
+	}
+	if (character != nullptr)
+	{
+		delete character;
+		character = nullptr;
+	}
 }

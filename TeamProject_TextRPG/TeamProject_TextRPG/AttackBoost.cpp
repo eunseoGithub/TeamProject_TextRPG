@@ -13,6 +13,6 @@ std::string AttackBoost::GetName() const
 
 void AttackBoost::Use(Character& character)
 {
-	// character.AddTempAttack(bonusAttack); // 수정해야 함
-	std::cout << "공격력이 증가하였습니다.\n";
+	character.AddTempAttack(bonusAttack); 
+	std::cout << "공격력이 증가하였습니다.\n\n";
 }

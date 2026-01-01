@@ -6,6 +6,7 @@ int main()
 	GameManager* game = new GameManager();
 	if (!game->CreateCharacter())
 		return 0;
+	system("cls");
 	while (true)
 	{
 		game->Render();
