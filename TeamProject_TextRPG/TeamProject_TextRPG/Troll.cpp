@@ -2,7 +2,7 @@
 
 Troll::Troll(int level)
 {
-	name = "Æ®·Ñ";
+	name = "íŠ¸ë¡¤";
 	isAlive = true;
 	int maxHealth = level * 30;
 	int minHealth = level * 20;
