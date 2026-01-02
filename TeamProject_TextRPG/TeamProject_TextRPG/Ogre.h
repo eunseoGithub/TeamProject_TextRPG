@@ -1,9 +1,9 @@
 #pragma once
 #include "Monster.h"
 
-class Boss : public Monster
+class Ogre : public Monster
 {
 public:
-	Boss(int level);
+	Ogre(int level);
 	void Attack(Character& character);
 };

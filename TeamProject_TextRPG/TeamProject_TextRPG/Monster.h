@@ -17,9 +17,12 @@ public:
 	void SetIsAlive(bool alive);
 	virtual ~Monster() = default;
 	void PrintMonsterStatus();
+	void TakeTickDamage(int damage);
 protected:
 	string name;
 	int health;
 	int attack;
 	bool isAlive;
+	bool isPoison;
+	bool isFire;
 };

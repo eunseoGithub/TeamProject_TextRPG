@@ -124,28 +124,38 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AttackBoost.h" />
-    <ClInclude Include="Boss.h" />
+    <ClInclude Include="Dragon.h" />
+    <ClInclude Include="Demon.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Ghost.h" />
     <ClInclude Include="Global.h" />
     <ClInclude Include="Goblin.h" />
+    <ClInclude Include="Golem.h" />
     <ClInclude Include="HealthPotion.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Medusa.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="Ogre.h" />
     <ClInclude Include="Orc.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="Troll.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AttackBoost.cpp" />
-    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="Dragon.cpp" />
+    <ClCompile Include="Demon.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Ghost.cpp" />
     <ClCompile Include="Goblin.cpp" />
+    <ClCompile Include="Golem.cpp" />
     <ClCompile Include="HealthPotion.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Medusa.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="Ogre.cpp" />
     <ClCompile Include="Orc.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="Troll.cpp" />
