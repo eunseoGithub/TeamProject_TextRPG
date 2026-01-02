@@ -51,6 +51,12 @@
     <ClInclude Include="Boss.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Warrior.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Magician.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Character.cpp">
@@ -87,6 +93,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Boss.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Warrior.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Magician.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
