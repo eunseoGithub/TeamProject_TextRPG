@@ -18,24 +18,32 @@ GameManager::GameManager()
 
 void GameManager::GenerateMonster(int level)
 {
-	int randType = rand() % 4;
 	Monster* randMonster;
-	switch (randType)
+	if (character->GetLevel() % 10 == 0)
 	{
-	case troll:
-		randMonster = new Troll(level);
-		break;
-	case orc:
-		randMonster = new Orc(level);
-		break;
-	case slime:
-		randMonster = new Slime(level);
-		break;
-	case goblin:
-		randMonster = new Goblin(level);
-		break;
-	default:
-		randMonster = nullptr;
+		randMonster = new Boss(level);
+	}
+	else
+	{
+		int randType = rand() % 4;
+
+		switch (randType)
+		{
+		case troll:
+			randMonster = new Troll(level);
+			break;
+		case orc:
+			randMonster = new Orc(level);
+			break;
+		case slime:
+			randMonster = new Slime(level);
+			break;
+		case goblin:
+			randMonster = new Goblin(level);
+			break;
+		default:
+			randMonster = nullptr;
+		}
 	}
 	if (randMonster == nullptr)
 	{
@@ -56,14 +64,14 @@ bool GameManager::GamePlay()
 	{
 		CharacterAct();
 		WaitMs(300);
-		
-		if (!HandleMonsterDefeat())
+
+		if(!HandleMonsterDefeat())
 			break;
 		
 		MonsterAct();
 		WaitMs(300);
 		
-		if (!HandleCharacterDefeat())
+		if(!HandleCharacterDefeat())
 			return false;
 		
 		WaitMs(300);
@@ -114,19 +122,25 @@ bool GameManager::CreateCharacter()
 
 void GameManager::CharacterAct()
 {
-	if (rand() % 2 == 0)
+	if (rand() % 10 < 8)
 	{
 		character->Attack(*currentMonster);
-		WaitMs(300);
-		Render();
 	}
 	else
 	{
 		character->DrinkPotion();
-		WaitMs(300);
-		Render();
 	}
+	WaitMs(300);
+	Render();
 }
+//
+//void MonsterTickDamage()
+//{
+//	if (monster->GetIsPoison() == true)
+//	{
+//		character->PoisonAttack(monster,character->GetLevel() *5);
+//	}
+//}
 
 void GameManager::MonsterAct()
 {
@@ -186,7 +200,7 @@ bool GameManager::HandleMonsterDefeat()
 	if (!currentMonster->GetIsAlive())
 	{
 		currentMonster->Dead();
-		character->AddExperience(50);
+		character->AddExperience(100);
 		WaitMs(300);
 		int randomGold = rand() % 11 + 10;
 		character->AddGold(randomGold);
@@ -212,11 +226,11 @@ bool GameManager::HandleCharacterDefeat()
 		WaitMs(300);
 		return false;
 	}
-	if (character->GetLevel() >= 10)
+	/*if (character->GetLevel() >= 10)
 	{
 		GameWin();
 		return false;
-	}
+	}*/
 	return true;
 }
 

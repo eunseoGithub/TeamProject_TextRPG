@@ -10,6 +10,7 @@
 #include "Orc.h"
 #include "Slime.h"
 #include "Troll.h"
+#include "Boss.h"
 #include "Item.h"
 #include "AttackBoost.h"
 #include "HealthPotion.h"
