@@ -8,11 +8,11 @@ AttackBoost::AttackBoost(int bonus)
 
 std::string AttackBoost::GetName() const
 {
-	return "°ø°İ·Â Áõ°¡ (+ 10)";
+	return "ê³µê²©ë ¥ ì¦ê°€ (+ 10)";
 }
 
 void AttackBoost::Use(Character& character)
 {
 	character.AddTempAttack(bonusAttack); 
-	std::cout << "°ø°İ·ÂÀÌ Áõ°¡ÇÏ¿´½À´Ï´Ù.\n\n";
+	std::cout << "ê³µê²©ë ¥ì´ ì¦ê°€í•˜ì˜€ìŠµë‹ˆë‹¤.\n\n";
 }

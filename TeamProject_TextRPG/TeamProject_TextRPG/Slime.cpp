@@ -2,7 +2,7 @@
 
 Slime::Slime(int level)
 {
-	name = "½½¶óÀÓ";
+	name = "ìŠ¬ë¼ì„";
 	isAlive = true;
 	int maxHealth = level * 30;
 	int minHealth = level * 20;
