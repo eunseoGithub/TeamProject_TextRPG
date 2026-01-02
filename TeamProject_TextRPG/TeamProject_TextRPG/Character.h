@@ -36,6 +36,7 @@ public:
 
 	int GetLevel();
 	bool GetIsAlive();
+	int GetGold();
 
 	void SetIsAlive(bool isAlive);
 

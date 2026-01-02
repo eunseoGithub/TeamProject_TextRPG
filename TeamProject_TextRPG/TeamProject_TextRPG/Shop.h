@@ -1,7 +1,7 @@
 #pragma once
 #include "Global.h"
 #include <vector>
-
+#include "GameUtils.h"
 class Character;
 
 struct ShopItem

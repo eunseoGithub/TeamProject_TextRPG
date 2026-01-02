@@ -100,7 +100,10 @@ void Character::DrinkPotion()
 	
 	delete item;
 }
-
+int Character::GetGold()
+{
+	return gold;
+}
 void Character::Heal(int amount)
 {
 	hp += amount;
