@@ -40,7 +40,7 @@ void GameManager::GenerateMonster(int level)
 	}
 	if (randMonster == nullptr)
 	{
-		cout << "¸ó½ºÅÍ »ı¼º¿¡ ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù." << endl;
+		cout << "ëª¬ìŠ¤í„° ìƒì„±ì— ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤." << endl;
 	}
 	currentMonster = randMonster;
 	if (currentMonster != nullptr)
@@ -83,11 +83,11 @@ void GameManager::DisplayInventory()const
 	const vector<Item*>& inventory = character->GetInventory();
 
 	cout << "\n===========================\n";
-	cout << "      [ ÀÎ º¥ Åä ¸® ]                         \n";
+	cout << "      [ ì¸ ë²¤ í†  ë¦¬ ]                         \n";
 	cout << "===========================\n";
 	if (inventory.empty())
 	{
-		cout << "º¸À¯ ÁßÀÎ ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.\n";
+		cout << "ë³´ìœ  ì¤‘ì¸ ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.\n";
 	}
 	else
 	{
@@ -103,15 +103,15 @@ void GameManager::DisplayInventory()const
 bool GameManager::CreateCharacter()
 {
 	cout << "\n===========================\n";
-	cout << "  [ »õ·Î¿î ¸ğÇè°¡ »ı¼º ]                 \n";
+	cout << "  [ ìƒˆë¡œìš´ ëª¨í—˜ê°€ ìƒì„± ]                 \n";
 	cout << "===========================\n";
-	cout << "Ä³¸¯ÅÍÀÇ ÀÌ¸§À» Á¤ÇØÁÖ¼¼¿ä : ";
+	cout << "ìºë¦­í„°ì˜ ì´ë¦„ì„ ì •í•´ì£¼ì„¸ìš” : ";
 	string name;
 	cin >> name;
 	character = new Character(name);
 	if (character == nullptr)
 	{
-		cout << "Ä³¸¯ÅÍ »ı¼º¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù. °ÔÀÓÀ» Á¾·áÇÕ´Ï´Ù." << endl;
+		cout << "ìºë¦­í„° ìƒì„±ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤. ê²Œì„ì„ ì¢…ë£Œí•©ë‹ˆë‹¤." << endl;
 		return false;
 	}
 	return true;
@@ -151,14 +151,14 @@ void GameManager::Render() const
 
 void GameManager::GameWin()
 {
-	cout << "°ÔÀÓ¿¡¼­ ½Â¸®Çß½À´Ï´Ù." << endl;
+	cout << "ê²Œì„ì—ì„œ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤." << endl;
 	PrintTotalMonster();
 	DeleteMember();
 }
 
 void GameManager::GameLose()
 {
-	cout << "°ÔÀÓ¿¡¼­ ÆĞ¹èÇß½À´Ï´Ù." << endl;
+	cout << "ê²Œì„ì—ì„œ íŒ¨ë°°í–ˆìŠµë‹ˆë‹¤." << endl;
 	PrintTotalMonster();
 	DeleteMember();
 }
@@ -167,11 +167,11 @@ void GameManager::PrintTotalMonster() const
 {
 	if (totalMonster.empty())
 	{
-		cout << "ÀâÀº ¸ó½ºÅÍ°¡ ¾ø½À´Ï´Ù." << endl;
+		cout << "ì¡ì€ ëª¬ìŠ¤í„°ê°€ ì—†ìŠµë‹ˆë‹¤." << endl;
 		return;
 	}
 	cout << "\n===========================\n";
-	cout << "  [ ½Î¿î ¸ó½ºÅÍ ¸ñ·Ï ]                 \n";
+	cout << "  [ ì‹¸ìš´ ëª¬ìŠ¤í„° ëª©ë¡ ]                 \n";
 	cout << "===========================\n";
 	int index = 1;
 	for (auto& mon : totalMonster)
@@ -250,9 +250,9 @@ void GameManager::DeleteMember()
 bool GameManager::VisitShop()
 {
 	cout << "\n===========================\n";
-	cout << "  [ »ó Á¡ ¹æ ¹® ¿© ºÎ]                 \n";
+	cout << "  [ ìƒ ì  ë°© ë¬¸ ì—¬ ë¶€]                 \n";
 	cout << "===========================\n";
-	cout << "»óÁ¡À» ¹æ¹®À» ÇÏ½Ã°Ú½À´Ï±î? >(Yes : 1, No : 0)";
+	cout << "ìƒì ì„ ë°©ë¬¸ì„ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? >(Yes : 1, No : 0)";
 	
 	string input;
 	cin >> input;
@@ -263,7 +263,7 @@ bool GameManager::VisitShop()
 	if (input == "0" || input == "N0" || input == "no" || input == "N" || input == "n")
 		return false;
 	
-	cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä" << endl;
+	cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•´ì£¼ì„¸ìš”" << endl;
 	return VisitShop();
 
 }
