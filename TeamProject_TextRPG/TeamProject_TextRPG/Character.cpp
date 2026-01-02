@@ -17,23 +17,23 @@ Character::Character(string name)
 void Character::PrintCharacterStatus()
 {
 	cout << "===========================\n";
-	cout << "   [ Ä³ ¸¯ ÅÍ ½º ÅÝ Ã¢ ]                         \n";
+	cout << "   [ ìº ë¦­ í„° ìŠ¤ í…Ÿ ì°½ ]                         \n";
 	cout << "===========================\n";
-	cout << "ÀÌ¸§ : " << name << endl;
-	cout << "·¹º§ : " << level << endl;
+	cout << "ì´ë¦„ : " << name << endl;
+	cout << "ë ˆë²¨ : " << level << endl;
 	cout << "HP : " << hp << "/" << maxhp << endl;
-	cout << "°ø°Ý·Â : " << attack << endl;
-	cout << "º¸À¯ °ñµå : " << gold << endl;
+	cout << "ê³µê²©ë ¥ : " << attack << endl;
+	cout << "ë³´ìœ  ê³¨ë“œ : " << gold << endl;
 	cout << "===========================\n";
 }
 
-//°ø°Ý ÇÏ±â
+//ê³µê²© í•˜ê¸°
 void Character::Attack(Monster& monster)
 {
 	monster.TakeDamage(attack);
 }
 
-//°ø°Ý ¹ÞÀ½
+//ê³µê²© ë°›ìŒ
 void Character::TakeDamage(int damage)
 {
 	hp -= damage;
@@ -43,16 +43,16 @@ void Character::TakeDamage(int damage)
 		isAlive = false;
 		Dead();
 	}
-	cout << name << "ÀÌ(°¡) µ¥¹ÌÁö¸¦ ÀÔ¾ú½À´Ï´Ù." << "³²Àº hp :" << hp << endl;
+	cout << name << "ì´(ê°€) ë°ë¯¸ì§€ë¥¼ ìž…ì—ˆìŠµë‹ˆë‹¤." << "ë‚¨ì€ hp :" << hp << endl;
 }
 
-//Á×À½
+//ì£½ìŒ
 void Character::Dead()
 {
-	cout << name << "ÀÌ(°¡) Á×¾ú½À´Ï´Ù." << endl;
+	cout << name << "ì´(ê°€) ì£½ì—ˆìŠµë‹ˆë‹¤." << endl;
 }
 
-//°æÇèÄ¡
+//ê²½í—˜ì¹˜
 void Character::AddExperience(int amount)
 {
 	experience += amount;
@@ -64,7 +64,7 @@ void Character::AddGold(int amount)
 	gold += amount;
 }
 
-// °æÇèÄ¡ Ã¼Å©, ·¹º§¾÷
+// ê²½í—˜ì¹˜ ì²´í¬, ë ˆë²¨ì—…
 void Character::CheckLevelUp()
 {
 	if (experience >= 100)
@@ -81,19 +81,19 @@ void Character::LevelUp()
 	hp = maxhp;
 	attack += 5;
 
-	cout << name << "***·¹º§ ¾÷! ÇöÀç ·¹º§ : " << level  << "***" << endl;
+	cout << name << "***ë ˆë²¨ ì—…! í˜„ìž¬ ë ˆë²¨ : " << level  << "***" << endl;
 }
 
-//¾ÆÀÌÅÛ Æ÷¼Ç
+//ì•„ì´í…œ í¬ì…˜
 void Character::DrinkPotion()
 {
-	cout << name << "ÀÌ(°¡) ¾ÆÀÌÅÛ »ç¿ëÀ» ½ÃµµÇÕ´Ï´Ù." << endl;
+	cout << name << "ì´(ê°€) ì•„ì´í…œ ì‚¬ìš©ì„ ì‹œë„í•©ë‹ˆë‹¤." << endl;
 	if (inventory.empty())
 	{
-		cout << name << "ÀÌ(°¡) »ç¿ëÇÒ ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù." << endl << endl;
+		cout << name << "ì´(ê°€) ì‚¬ìš©í•  ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤." << endl << endl;
 		return;
 	}
-	cout << name << "ÀÌ(°¡) ¾ÆÀÌÅÛÀ» »ç¿ëÇß½À´Ï´Ù." << endl;
+	cout << name << "ì´(ê°€) ì•„ì´í…œì„ ì‚¬ìš©í–ˆìŠµë‹ˆë‹¤." << endl;
 	Item* item = inventory.back();
 	inventory.pop_back();
 	item->Use(*this);
@@ -111,7 +111,7 @@ void Character::Heal(int amount)
 	{
 		hp = maxhp;
 	}
-	cout << name << "HP°¡ È¸º¹µÇ¾ú½À´Ï´Ù. ÇöÀç HP : " << hp << endl;
+	cout << name << "HPê°€ íšŒë³µë˜ì—ˆìŠµë‹ˆë‹¤. í˜„ìž¬ HP : " << hp << endl;
 }
 
 void Character::AddTempAttack(int amount)
@@ -129,7 +129,7 @@ void Character::ResetTempAttack()
 	}
 }
 
-//ÀÎº¥Åä¸®
+//ì¸ë²¤í† ë¦¬
 void Character::AddItem(Item* item)
 {
 	inventory.push_back(item);
