@@ -1,19 +1,11 @@
 #include "GameManager.h"
 
-static void WaitMs(int ms) {
-	this_thread::sleep_for(std::chrono::milliseconds(ms));
-}
-
-void GameManager::ClearScreen() const
-{
-	system("cls");
-}
-
 GameManager::GameManager()
 {
 	srand(time(NULL));
 	character = nullptr;
 	currentMonster = nullptr;
+	shopManager = new Shop();
 }
 
 void GameManager::GenerateMonster(int level)
@@ -43,6 +35,7 @@ void GameManager::GenerateMonster(int level)
 			break;
 		default:
 			randMonster = nullptr;
+			break;
 		}
 	}
 	if (randMonster == nullptr)
@@ -63,21 +56,25 @@ bool GameManager::GamePlay()
 	while (true)
 	{
 		CharacterAct();
-		WaitMs(300);
+		GameUtils::WaitMs(300);
 
 		if(!HandleMonsterDefeat())
 			break;
 		
 		MonsterAct();
-		WaitMs(300);
+		GameUtils::WaitMs(300);
 		
 		if(!HandleCharacterDefeat())
 			return false;
 		
-		WaitMs(300);
+		GameUtils::WaitMs(300);
 		
 	}
 	character->ResetTempAttack();
+	if (VisitShop())
+	{
+		shopManager->ShowMenu(*character);
+	}
 	return true;
 }
 
@@ -130,28 +127,20 @@ void GameManager::CharacterAct()
 	{
 		character->DrinkPotion();
 	}
-	WaitMs(300);
+	GameUtils::WaitMs(300);
 	Render();
 }
-//
-//void MonsterTickDamage()
-//{
-//	if (monster->GetIsPoison() == true)
-//	{
-//		character->PoisonAttack(monster,character->GetLevel() *5);
-//	}
-//}
 
 void GameManager::MonsterAct()
 {
 	currentMonster->Attack(*character);
-	WaitMs(300);
+	GameUtils::WaitMs(300);
 	Render();
 }
 
 void GameManager::Render() const
 {
-	ClearScreen();
+	GameUtils::ClearScreen();
 	DisplayInventory();
 	character->PrintCharacterStatus();
 	if (currentMonster != nullptr)
@@ -199,9 +188,12 @@ bool GameManager::HandleMonsterDefeat()
 	}
 	if (!currentMonster->GetIsAlive())
 	{
+		bool isBoss = currentMonster->IsBoss();
+		int playerLevel = character->GetLevel();
+
 		currentMonster->Dead();
-		character->AddExperience(100);
-		WaitMs(300);
+		character->AddExperience(50);
+		GameUtils::WaitMs(300);
 		int randomGold = rand() % 11 + 10;
 		character->AddGold(randomGold);
 
@@ -212,6 +204,13 @@ bool GameManager::HandleMonsterDefeat()
 		}
 		delete currentMonster;
 		currentMonster = nullptr;
+		
+		if (isBoss && playerLevel >= 10)
+		{
+			GameWin();
+			return false;
+		}
+		
 		return false;
 	}
 	return true;
@@ -223,14 +222,9 @@ bool GameManager::HandleCharacterDefeat()
 	{
 		character->Dead();
 		GameLose();
-		WaitMs(300);
+		GameUtils::WaitMs(300);
 		return false;
 	}
-	/*if (character->GetLevel() >= 10)
-	{
-		GameWin();
-		return false;
-	}*/
 	return true;
 }
 
@@ -246,4 +240,30 @@ void GameManager::DeleteMember()
 		delete character;
 		character = nullptr;
 	}
+	if (shopManager != nullptr)
+	{
+		delete shopManager;
+		shopManager = nullptr;
+	}
+}
+
+bool GameManager::VisitShop()
+{
+	cout << "\n===========================\n";
+	cout << "  [ 상 점 방 문 여 부]                 \n";
+	cout << "===========================\n";
+	cout << "상점을 방문을 하시겠습니까? >(Yes : 1, No : 0)";
+	
+	string input;
+	cin >> input;
+	
+	if (input == "1" || input == "Yes" || input == "yes" || input == "Y" || input == "y")
+		return true;
+	
+	if (input == "0" || input == "N0" || input == "no" || input == "N" || input == "n")
+		return false;
+	
+	cout << "잘못된 입력입니다. 다시 입력해주세요" << endl;
+	return VisitShop();
+
 }
