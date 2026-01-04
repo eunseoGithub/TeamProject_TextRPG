@@ -13,13 +13,12 @@
 #include "HealthPotion.h"
 #include "Shop.h"
 #include "GameUtils.h"
-
+#include "StageManager.h"
 class GameManager
 {
 public:
 	GameManager();
 	bool CreateCharacter();
-	void GenerateMonster(int level);
 	bool GamePlay();
 	void Render()const;
 private:
@@ -38,5 +37,6 @@ private:
 	Monster* currentMonster;
 	vector<string> totalMonster;
 	Shop* shopManager;
+	StageManager stageManager;
 };
 
