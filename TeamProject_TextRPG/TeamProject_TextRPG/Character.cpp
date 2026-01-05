@@ -17,17 +17,17 @@ Character::Character(string name)
 void Character::PrintCharacterStatus()
 {
 	cout << "===========================\n";
-	cout << "   [ ƒ≥ ∏Ø ≈Õ Ω∫ ≈› √¢ ]                         \n";
+	cout << "   [ Ï∫ê Î¶≠ ÌÑ∞ Ïä§ ÌÖü Ï∞Ω ]                         \n";
 	cout << "===========================\n";
-	cout << "¿Ã∏ß : " << name << endl;
-	cout << "∑π∫ß : " << level << endl;
+	cout << "Ïù¥Î¶Ñ : " << name << endl;
+	cout << "Î†àÎ≤® : " << level << endl;
 	cout << "HP : " << hp << "/" << maxhp << endl;
-	cout << "∞¯∞›∑¬ : " << attack << endl;
-	cout << "∫∏¿Ø ∞ÒµÂ : " << gold << endl;
+	cout << "Í≥µÍ≤©Î†• : " << attack << endl;
+	cout << "Î≥¥Ïú† Í≥®Îìú : " << gold << endl;
 	cout << "===========================\n";
 }
 
-//∞¯∞› «œ±‚
+//Í≥µÍ≤© ÌïòÍ∏∞
 void Character::Attack(Monster& monster)
 {
 	monster.TakeDamage(attack);
@@ -35,11 +35,11 @@ void Character::Attack(Monster& monster)
 
 void Character::PotionAttack(Monster& monster, int damage)
 {
-	cout << name << "¿Ã(∞°) »≠ø∞ ∆˜º«¿ª ªÁøÎ«ﬂΩ¿¥œ¥Ÿ." << endl;
+	cout << name << "Ïù¥(Í∞Ä) ÌôîÏóº Ìè¨ÏÖòÏùÑ ÏÇ¨Ïö©ÌñàÏäµÎãàÎã§." << endl;
 	monster.TakeDamage(damage);
 }
 
-//∞¯∞› πﬁ¿Ω
+//Í≥µÍ≤© Î∞õÏùå
 void Character::TakeDamage(int damage)
 {
 	hp -= damage;
@@ -49,16 +49,16 @@ void Character::TakeDamage(int damage)
 		isAlive = false;
 		Dead();
 	}
-	cout << name << "¿Ã(∞°) µ•πÃ¡ˆ∏¶ ¿‘æ˙Ω¿¥œ¥Ÿ." << "≥≤¿∫ hp :" << hp << endl;
+	cout << name << "Ïù¥(Í∞Ä) Îç∞ÎØ∏ÏßÄÎ•º ÏûÖÏóàÏäµÎãàÎã§." << "ÎÇ®ÏùÄ hp :" << hp << endl;
 }
 
-//¡◊¿Ω
+//Ï£ΩÏùå
 void Character::Dead()
 {
-	cout << name << "¿Ã(∞°) ¡◊æ˙Ω¿¥œ¥Ÿ." << endl;
+	cout << name << "Ïù¥(Í∞Ä) Ï£ΩÏóàÏäµÎãàÎã§." << endl;
 }
 
-//∞Ê«Ëƒ°
+//Í≤ΩÌóòÏπò
 void Character::AddExperience(int amount)
 {
 	experience += amount;
@@ -70,7 +70,7 @@ void Character::AddGold(int amount)
 	gold += amount;
 }
 
-// ∞Ê«Ëƒ° √º≈©, ∑π∫ßæ˜
+// Í≤ΩÌóòÏπò Ï≤¥ÌÅ¨, Î†àÎ≤®ÏóÖ
 void Character::CheckLevelUp()
 {
 	if (experience >= 100)
@@ -87,7 +87,7 @@ void Character::LevelUp()
 	hp = maxhp;
 	attack += 5;
 
-	cout << name << "***∑π∫ß æ˜! «ˆ¿Á ∑π∫ß : " << level << "***" << endl;
+	cout << name << "***Î†àÎ≤® ÏóÖ! ÌòÑÏû¨ Î†àÎ≤® : " << level << "***" << endl;
 }
 
 void Character::Heal(int amount)
@@ -97,7 +97,7 @@ void Character::Heal(int amount)
 	{
 		hp = maxhp;
 	}
-	cout << name << "HP∞° »∏∫πµ«æ˙Ω¿¥œ¥Ÿ. «ˆ¿Á HP : " << hp << endl;
+	cout << name << "HPÍ∞Ä ÌöåÎ≥µÎêòÏóàÏäµÎãàÎã§. ÌòÑÏû¨ HP : " << hp << endl;
 }
 
 void Character::AddTempAttack(int amount)
@@ -115,25 +115,25 @@ void Character::ResetTempAttack()
 	}
 }
 
-//æ∆¿Ã≈€ ∆˜º«
+//ÏïÑÏù¥ÌÖú Ìè¨ÏÖò
 
 
 void Character::DrinkPotion(int index, Monster& monster)
 {
 	cout << "===========================\n";
-	cout << "   [ æ∆ ¿Ã ≈€ º± ≈√ √¢ ]                         \n";
+	cout << "   [ ÏïÑ Ïù¥ ÌÖú ÏÑ† ÌÉù Ï∞Ω ]                         \n";
 	cout << "===========================\n";
 
 	if (inventory.empty())
 	{
-		cout << "ªÁøÎ«“ æ∆¿Ã≈€¿Ã æ¯Ω¿¥œ¥Ÿ." << endl;
+		cout << "ÏÇ¨Ïö©Ìï† ÏïÑÏù¥ÌÖúÏù¥ ÏóÜÏäµÎãàÎã§." << endl;
 		return;
 	}
 	while (true)
 	{
 		if (index < 0 || index >= inventory.size())
 		{
-			cout << "¿ﬂ∏¯µ» æ∆¿Ã≈€ º±≈√¿‘¥œ¥Ÿ. ¥ŸΩ√ º±≈√«ÿ¡÷ººø‰ : " << endl;
+			cout << "ÏûòÎ™ªÎêú ÏïÑÏù¥ÌÖú ÏÑ†ÌÉùÏûÖÎãàÎã§. Îã§Ïãú ÏÑ†ÌÉùÌï¥Ï£ºÏÑ∏Ïöî" << endl;
 			cin >> index;
 			continue;
 		}
@@ -143,33 +143,33 @@ void Character::DrinkPotion(int index, Monster& monster)
 		switch (item->GetType())
 		{
 		case ItemType::HpPotion:
-			cout << name << "¿Ã(∞°) HP ∆˜º«¿ª ªÁøÎ«ﬂΩ¿¥œ¥Ÿ!" << endl;
+			cout << name << "Ïù¥(Í∞Ä) HP Ìè¨ÏÖòÏùÑ ÏÇ¨Ïö©ÌñàÏäµÎãàÎã§!" << endl;
 			Heal(item->GetValue());
 			break;
 
 		case ItemType::AttackPotion:
-			cout << name << "¿Ã(∞°) ∞¯∞›∑¬ ∆˜º«¿ª ªÁøÎ«ﬂΩ¿¥œ¥Ÿ." << endl;
+			cout << name << "Ïù¥(Í∞Ä) Í≥µÍ≤©Î†• Ìè¨ÏÖòÏùÑ ÏÇ¨Ïö©ÌñàÏäµÎãàÎã§." << endl;
 			AddTempAttack(item->GetValue());
 			break;
 
 		case ItemType::PoisonPotion:
 			if (monster.IsPoison())
 			{
-				cout << "¿ÃπÃ ¿˚¿Ã ¡ﬂµ∂ ªÛ≈¬¿‘¥œ¥Ÿ. ¥Ÿ∏• æ∆¿Ã≈€¿ª º±≈√«ÿ¡÷ººø‰.";
+				cout << "Ïù¥ÎØ∏ Ï†ÅÏù¥ Ï§ëÎèÖ ÏÉÅÌÉúÏûÖÎãàÎã§. Îã§Î•∏ ÏïÑÏù¥ÌÖúÏùÑ ÏÑ†ÌÉùÌï¥Ï£ºÏÑ∏Ïöî." << endl;
 				cin >> index;
 				continue;
 			}
-			cout << name << "¿Ã(∞°) µ∂ ∆˜º«¿ª ªÁøÎ«ﬂΩ¿¥œ¥Ÿ." << endl;
+			cout << name << "Ïù¥(Í∞Ä) ÎèÖ Ìè¨ÏÖòÏùÑ ÏÇ¨Ïö©ÌñàÏäµÎãàÎã§." << endl;
 			monster.SetPoison(true);
 			Attack(monster);
 			break;
 
 		case ItemType::FirePotion:
-			PotionAttack(monsster, item->GetValue());
+			PotionAttack(monster, item->GetValue());
 			break;
 
 		default:
-			cout << "ªÁøÎ«“ ºˆ æ¯¥¬ æ∆¿Ã≈€¿‘¥œ¥Ÿ. ¥ŸΩ√ º±≈√«ÿ¡÷ººø‰ : ";
+			cout << "ÏÇ¨Ïö©Ìï† Ïàò ÏóÜÎäî ÏïÑÏù¥ÌÖúÏûÖÎãàÎã§. Îã§Ïãú ÏÑ†ÌÉùÌï¥Ï£ºÏÑ∏Ïöî " << endl;
 			cin >> index;
 			continue;
 		}
@@ -180,7 +180,7 @@ void Character::DrinkPotion(int index, Monster& monster)
 	}
 }
 
-//¿Œ∫•≈‰∏Æ
+//Ïù∏Î≤§ÌÜ†Î¶¨
 void Character::AddItem(Item* item)
 {
 	inventory.push_back(item);
