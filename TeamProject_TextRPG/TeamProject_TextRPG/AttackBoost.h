@@ -9,7 +9,6 @@ private:
 public:
 	AttackBoost(int bonus = 10);
 
-	std::string GetName() const override;
+	string GetName() const override;
 	void Use(Character& character) override;
 };
-

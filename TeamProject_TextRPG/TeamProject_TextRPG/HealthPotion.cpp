@@ -1,12 +1,11 @@
 #include "HealthPotion.h"
-#include <iostream>
+#include "Character.h"
 
 HealthPotion::HealthPotion(int heal)
-	: healAmount(heal)
-{
+	: Item(ItemType::HealthPotion), healAmount(heal) {
 }
 
-std::string HealthPotion::GetName() const
+string HealthPotion::GetName() const
 {
 	return "체력 포션 (+ 50)";
 }
@@ -14,5 +13,5 @@ std::string HealthPotion::GetName() const
 void HealthPotion::Use(Character& character)
 {
 	character.Heal(healAmount);
-	std::cout << "체력 포션을 사용했습니다.\n\n";
+	cout << "체력 포션을 사용했습니다.\n";
 }
