@@ -1,5 +1,20 @@
 #include "Character.h"
+#include "Shop.h"
 
+Character::~Character()
+{
+	if (shop)
+	{
+		for (Item* it : inventory)
+			shop->ReleaseItem(it);
+	}
+	else
+	{
+		for (Item* it : inventory)
+			delete it;
+	}
+	inventory.clear();
+}
 
 Character::Character(string name)
 {
@@ -28,10 +43,14 @@ void Character::PrintCharacterStatus()
 	cout << "===========================\n";
 }
 
-//공격 하기
 void Character::Attack(Monster& monster)
 {
 	monster.TakeDamage(attack);
+}
+
+void Character::SetShop(Shop* s)
+{
+	shop = s;
 }
 
 void Character::PotionAttack(Monster& monster, int damage)
@@ -40,7 +59,6 @@ void Character::PotionAttack(Monster& monster, int damage)
 	monster.TakeDamage(damage);
 }
 
-//공격 받음
 void Character::TakeDamage(int damage)
 {
 	hp -= damage;
@@ -53,13 +71,11 @@ void Character::TakeDamage(int damage)
 	cout << name << "이(가) 데미지를 입었습니다." << "남은 hp :" << hp << endl;
 }
 
-//죽음
 void Character::Dead()
 {
 	cout << name << "이(가) 죽었습니다." << endl;
 }
 
-//경험치
 void Character::AddExperience(int amount)
 {
 	experience += amount;
@@ -71,7 +87,6 @@ void Character::AddGold(int amount)
 	gold += amount;
 }
 
-// 경험치 체크, 레벨업
 void Character::CheckLevelUp()
 {
 	if (experience >= 100)
@@ -119,7 +134,6 @@ void Character::ResetTempAttack()
 	}
 }
 
-//아이템 포션
 void Character::DrinkPotion(int index, Monster& monster)
 {
 
@@ -130,7 +144,7 @@ void Character::DrinkPotion(int index, Monster& monster)
 	}
 	while (true)
 	{
-		if (index < 0 || index >= inventory.size())
+		if (index < 0 || index >= (int)inventory.size())
 		{
 			cout << "잘못된 아이템 선택입니다. 다시 선택해주세요 : ";
 			cin >> index;
@@ -173,12 +187,13 @@ void Character::DrinkPotion(int index, Monster& monster)
 		}
 
 		inventory.erase(inventory.begin() + index);
-		//delete item;
+		
+		if (shop) shop->ReleaseItem(item);
+		else delete item;
 		break;
 	}
 }
 
-//인벤토리
 void Character::AddItem(Item* item)
 {
 	inventory.push_back(item);
@@ -198,4 +213,3 @@ bool Character::GetIsAlive()
 {
 	return isAlive;
 }
-
