@@ -17,9 +17,14 @@ public:
 	virtual ~Monster() = default;
 	void PrintMonsterStatus();
 	virtual bool IsBoss() const { return false; }
+	void TakeTickDamage(int damage);
+	int GetIsPoison();
 protected:
 	string name;
 	int health;
 	int attack;
 	bool isAlive;
+	bool isPoison;
+	bool isFire;
+	int tickCount = 0;
 };

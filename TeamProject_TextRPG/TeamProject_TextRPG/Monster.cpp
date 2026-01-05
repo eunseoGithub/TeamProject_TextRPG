@@ -25,6 +25,29 @@ void Monster::TakeDamage(int damage)
 	cout << name << "(이)가 " << damage << "만큼 데미지를 입었습니다!" << endl;
 }
 
+void Monster::TakeTickDamage(int damage)
+{
+	if (isPoison == true)
+	{
+		health -= damage;
+		if (health <= 0)
+		{
+			isAlive = false;
+		}
+		cout << name << "(이)가 " << damage << "만큼 독데미지를 입었습니다!" << endl;
+		tickCount++;
+	}
+	if (tickCount >= 3)
+	{
+		isPoison = false;
+	}
+}
+
+int Monster::GetIsPoison()
+{
+	return isPoison;
+}
+
 void Monster::Dead()
 {
 	cout << name << "(이)가 죽었습니다!" << endl;
