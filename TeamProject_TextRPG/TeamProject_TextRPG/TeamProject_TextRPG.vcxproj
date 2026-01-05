@@ -137,6 +137,7 @@
     <ClInclude Include="Golem.h" />
     <ClInclude Include="HealthPotion.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="Magician.h" />
     <ClInclude Include="Medusa.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Ogre.h" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Stage.h" />
     <ClInclude Include="StageManager.h" />
     <ClInclude Include="Troll.h" />
+    <ClInclude Include="Warrior.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AttackBoost.cpp" />
@@ -161,6 +163,7 @@
     <ClCompile Include="Golem.cpp" />
     <ClCompile Include="HealthPotion.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="Magician.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Medusa.cpp" />
     <ClCompile Include="Monster.cpp" />
@@ -172,6 +175,7 @@
     <ClCompile Include="Stage.cpp" />
     <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="Troll.cpp" />
+    <ClCompile Include="Warrior.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

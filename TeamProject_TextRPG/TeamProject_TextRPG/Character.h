@@ -13,8 +13,7 @@ public:
 	//상태 출력
 	void PrintCharacterStatus();
 
-	//전투
-	void Attack(Monster& monster);
+	virtual void Attack(Monster& monster);
 	void TakeDamage(int damage);
 	void Dead();
 
@@ -27,7 +26,8 @@ public:
 	void Heal(int amount);
 	void AddTempAttack(int amount);
 	void ResetTempAttack();
-	void DrinkPotion();
+	void DrinkPotion(int index, Monster& monster);
+	void PotionAttack(Monster& monster, int damage);
 	void AddGold(int amount);
 
 	//인벤토리
@@ -40,7 +40,7 @@ public:
 
 	void SetIsAlive(bool isAlive);
 
-private:
+protected:
 
 	string name;
 

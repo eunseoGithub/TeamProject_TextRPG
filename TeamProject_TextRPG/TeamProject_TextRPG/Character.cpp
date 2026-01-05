@@ -4,13 +4,13 @@ Character::Character(string name)
 {
 	this->name = name;
 	level = 1;
-	maxhp = 200;
-	hp = maxhp;
-	attack = 30;
-
+	hp = 0;
+	maxhp = 0;
+	attack = 0;
 	experience = 0;
 	gold = 0;
 	bonusAttack = 0;
+
 	isAlive = true;
 }
 
@@ -31,6 +31,12 @@ void Character::PrintCharacterStatus()
 void Character::Attack(Monster& monster)
 {
 	monster.TakeDamage(attack);
+}
+
+void Character::PotionAttack(Monster& monster, int damage)
+{
+	cout << name << "이(가) 화염 포션을 사용했습니다." << endl;
+	monster.TakeDamage(damage);
 }
 
 //공격 받음
@@ -81,24 +87,7 @@ void Character::LevelUp()
 	hp = maxhp;
 	attack += 5;
 
-	cout << name << "***레벨 업! 현재 레벨 : " << level  << "***" << endl;
-}
-
-//아이템 포션
-void Character::DrinkPotion()
-{
-	cout << name << "이(가) 아이템 사용을 시도합니다." << endl;
-	if (inventory.empty())
-	{
-		cout << name << "이(가) 사용할 아이템이 없습니다." << endl << endl;
-		return;
-	}
-	cout << name << "이(가) 아이템을 사용했습니다." << endl;
-	Item* item = inventory.back();
-	inventory.pop_back();
-	item->Use(*this);
-	
-	delete item;
+	cout << name << "***레벨 업! 현재 레벨 : " << level << "***" << endl;
 }
 int Character::GetGold()
 {
@@ -107,7 +96,7 @@ int Character::GetGold()
 void Character::Heal(int amount)
 {
 	hp += amount;
-	if(hp>maxhp)
+	if (hp > maxhp)
 	{
 		hp = maxhp;
 	}
@@ -126,6 +115,71 @@ void Character::ResetTempAttack()
 	{
 		attack -= bonusAttack;
 		bonusAttack = 0;
+	}
+}
+
+//아이템 포션
+
+
+void Character::DrinkPotion(int index, Monster& monster)
+{
+	cout << "===========================\n";
+	cout << "   [ 아 이 템 선 택 창 ]                         \n";
+	cout << "===========================\n";
+
+	if (inventory.empty())
+	{
+		cout << "사용할 아이템이 없습니다." << endl;
+		return;
+	}
+	while (true)
+	{
+		if (index < 0 || index >= inventory.size())
+		{
+			cout << "잘못된 아이템 선택입니다. 다시 선택해주세요" << endl;
+			cin >> index;
+			continue;
+		}
+
+		Item* item = inventory[index];
+
+		switch (item->GetType())
+		{
+		case ItemType::HpPotion:
+			cout << name << "이(가) HP 포션을 사용했습니다!" << endl;
+			Heal(item->GetValue());
+			break;
+
+		case ItemType::AttackPotion:
+			cout << name << "이(가) 공격력 포션을 사용했습니다." << endl;
+			AddTempAttack(item->GetValue());
+			break;
+
+		case ItemType::PoisonPotion:
+			if (monster.IsPoison())
+			{
+				cout << "이미 적이 중독 상태입니다. 다른 아이템을 선택해주세요." << endl;
+				cin >> index;
+				continue;
+			}
+			cout << name << "이(가) 독 포션을 사용했습니다." << endl;
+			monster.SetPoison(true);
+			Attack(monster);
+			break;
+
+		case ItemType::FirePotion:
+			PotionAttack(monster, item->GetValue());
+			break;
+
+		default:
+			cout << "사용할 수 없는 아이템입니다. 다시 선택해주세요 " << endl;
+			cin >> index;
+			continue;
+		}
+
+		inventory.erase(inventory.begin() + index);
+		delete item;
+		break;
 	}
 }
 
