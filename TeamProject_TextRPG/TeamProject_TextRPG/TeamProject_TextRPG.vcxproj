@@ -127,6 +127,7 @@
     <ClInclude Include="AttackBoost.h" />
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="FirePotion.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameUtils.h" />
     <ClInclude Include="Global.h" />
@@ -135,6 +136,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Orc.h" />
+    <ClInclude Include="PoisonPotion.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="Slime.h" />
     <ClInclude Include="Stage.h" />
@@ -145,6 +147,7 @@
     <ClCompile Include="AttackBoost.cpp" />
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Character.cpp" />
+    <ClCompile Include="FirePotion.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameUtils.cpp" />
     <ClCompile Include="Goblin.cpp" />
@@ -153,6 +156,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Orc.cpp" />
+    <ClCompile Include="PoisonPotion.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Slime.cpp" />
     <ClCompile Include="Stage.cpp" />

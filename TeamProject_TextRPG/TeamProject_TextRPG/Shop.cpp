@@ -3,6 +3,8 @@
 #include "Item.h"
 #include "HealthPotion.h"
 #include "AttackBoost.h"
+#include "FirePotion.h"
+#include "PoisonPotion.h"
 
 static const ShopItem* FindShopItem(const vector<ShopItem>& items, int id)
 {
@@ -15,6 +17,8 @@ Shop::Shop()
 {
 	items.push_back({ 1, "체력 포션 (+ 50)", 20 });
 	items.push_back({ 2, "공격력 포션 (+ 10)", 10 });
+  items.push_back({ 3, "화염 포션 ()", 50});
+  items.push_back({ 4, "독 포션 ()",30)};
 }
 
 void Shop::PrintShopItems() const
@@ -123,6 +127,14 @@ bool Shop::BuyItem(Character& player, int itemId)
 	{
 		bought = new AttackBoost(10);
 	}
+	else if (item->id == 3)
+	{
+		bought = new FirePotion(50);
+	}
+	else if (item->id == 4)
+	{
+		bought = new PoisonPotion(30);
+	}
 	else
 	{
 		cout << "잘못된 입력입니다.\n";
@@ -173,7 +185,7 @@ bool Shop::SellItem(Character& player, int inventoryIndex)
 		return false;
 	}
 
-	int sellPrice = static_cast<int>(originalPrice * 0.5);
+	int sellPrice = static_cast<int>(originalPrice * 0.6);
 
 	delete target;
 	inv.erase(inv.begin() + inventoryIndex);
