@@ -111,8 +111,7 @@ bool GameManager::CreateCharacter()
 	cout << "  [ 새로운 모험가 생성 ]                 \n";
 	cout << "===========================\n";
 	cout << "모험가의 이름을 정해주세요 : ";
-	//string name;
-	//cin >> name;
+
 	wstring name= GameUtils::ReadWLine();
 	string realName = WStringToUTF8(name);
 	while (true)
@@ -125,8 +124,7 @@ bool GameManager::CreateCharacter()
 		cout << "2. 마법사 (Magician)\n";
 		cout << "===========================\n";
 		cout << "모험가의 직업을 정해주세요(1 선택 시 전사) :";
-		/*string input;
-		cin >> input;*/
+
 		wstring input = GameUtils::ReadWLine();
 		if (input == L"1" || input == L"전사" || input == L"warrior" || input == L"Warrior")
 		{
@@ -164,9 +162,8 @@ void GameManager::CharacterAct()
 			cout << "===========================\n";
 			cout << "   [ 아 이 템 선 택 창 ]                         \n";
 			cout << "===========================\n";
-			cout << "사용할 포션 번호를 입력하세요.";
 			int index;
-			cin >> index;
+			GameUtils::ReadInt("사용할 포션 번호를 입력하세요. : ", index);
 			character->DrinkPotion(index, *currentMonster);
 		}
 		else

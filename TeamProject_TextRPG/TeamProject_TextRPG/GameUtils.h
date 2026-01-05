@@ -1,6 +1,7 @@
 #pragma once
 #include <Windows.h>
 #include <string>
+#include <limits>
 using namespace std;
 namespace GameUtils
 {
@@ -8,6 +9,7 @@ namespace GameUtils
 	void ClearScreen();
 	void PrintW(const wstring& w);
 	wstring ReadWLine();
+	bool ReadInt(const char* prompt, int& out);
 }
 
 //int main()

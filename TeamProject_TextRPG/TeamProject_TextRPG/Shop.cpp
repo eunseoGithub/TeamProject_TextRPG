@@ -45,10 +45,9 @@ void Shop::ShowMenu(Character& player)
 		cout << "1. 아이템 사기\n";
 		cout << "2. 아이템 팔기\n";
 		cout << "3. 상점 나가기\n";
-		cout << "선택: ";
 
 		int choice;
-		cin >> choice;
+		GameUtils::ReadInt("선택 : ", choice);
 
 		if (choice == 0)
 		{
@@ -60,9 +59,8 @@ void Shop::ShowMenu(Character& player)
 		{
 			GameUtils::ClearScreen();
 			PrintShopItems();
-			cout << "구매할 아이템 번호 입력 : ";
 			int id;
-			cin >> id;
+			GameUtils::ReadInt("구매할 아이템 번호 입력 : ", id);
 			BuyItem(player, id);
 			GameUtils::WaitMs(700);
 		}

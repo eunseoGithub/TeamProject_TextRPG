@@ -2,7 +2,7 @@
 #include <thread>
 #include <chrono>
 #include <cstdlib>
-
+#include <iostream>
 namespace GameUtils
 {
 	void WaitMs(int ms) {
@@ -43,6 +43,23 @@ namespace GameUtils
 
         return w;
     }
+    bool ReadInt(const char* prompt, int& out)
+    {
+        while (true)
+        {
+            if (prompt)
+                cout << prompt;
+            if (cin >> out)
+            {
+                cin.ignore(10000, '\n');
+                return true;
+            }
 
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "숫자로 입력해주세요.\n";
+        }
+        return false;
+    }
    
 }
