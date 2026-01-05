@@ -68,7 +68,8 @@ void GameManager::DisplayInventory()const
 bool GameManager::CreateCharacter()
 {
 	cout << "\n===========================\n";
-	cout << "  [ 새로운 모험가 생성 ]                 \n";
+	//cout << "  [ 새로운 모험가 생성 ]                 \n";
+	GameUtils::PrintW(L"  [ 새로운 모험가 생성 ]                 \n");
 	cout << "===========================\n";
 	cout << "캐릭터의 이름을 정해주세요 : ";
 	string name;
