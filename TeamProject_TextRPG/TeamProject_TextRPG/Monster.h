@@ -18,6 +18,7 @@ public:
 	virtual ~Monster() = default;
 	void PrintMonsterStatus();
 	void TakeTickDamage(int damage);
+	int GetIsPoison();
 protected:
 	string name;
 	int health;
@@ -25,4 +26,5 @@ protected:
 	bool isAlive;
 	bool isPoison;
 	bool isFire;
+	int tickCount = 0;
 };
