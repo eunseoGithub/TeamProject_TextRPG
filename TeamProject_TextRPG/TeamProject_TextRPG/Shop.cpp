@@ -15,10 +15,10 @@ static const ShopItem* FindShopItem(const vector<ShopItem>& items, int id)
 
 Shop::Shop()
 {
-	items.push_back({ 1, "체력 포션 (+ 50)", 20 });
-	items.push_back({ 2, "공격력 포션 (+ 10)", 10 });
-	items.push_back({ 3, "화염 포션 (투척)", 50});
-	items.push_back({ 4, "독 포션 (투척)",30 });
+	items.push_back({ 1, "체력 포션 (+ 50)", 20,ItemType::HealthPotion });
+	items.push_back({ 2, "공격력 포션 (+ 10)", 10 , ItemType::AttackBoost });
+	items.push_back({ 3, "화염 포션 (투척)", 50, ItemType::FirePotion });
+	items.push_back({ 4, "독 포션 (투척)",30, ItemType::PoisonPotion });
 }
 
 void Shop::PrintShopItems() const
@@ -83,9 +83,8 @@ void Shop::ShowMenu(Character& player)
 				}
 			}
 
-			cout << "판매할 아이템 번호 입력: ";
 			int inventoryIndex;
-			cin >> inventoryIndex;
+			GameUtils::ReadInt("판매할 아이템 번호 입력 : ", inventoryIndex);
 			SellItem(player, inventoryIndex);
 			GameUtils::WaitMs(700);
 		}
@@ -189,12 +188,13 @@ bool Shop::SellItem(Character& player, int inventoryIndex)
 	}
 
 	Item* target = inv[inventoryIndex];
-	string name = target->GetName();
+	ItemType targetType = target->GetType();
+	string targetName = target->GetName();
 	int originalPrice = -1;
 
 	for (const auto& it : items)
 	{
-		if (it.name == name)
+		if (it.type == targetType)
 		{
 			originalPrice = it.price;
 			break;
@@ -216,7 +216,7 @@ bool Shop::SellItem(Character& player, int inventoryIndex)
 
 	player.AddGold(sellPrice);
 
-	cout << "[ 판매 ]" << name << "판매 완료! (+" << sellPrice << "G\n";
+	cout << "[ 판매 ]" << targetName << "판매 완료! (+" << sellPrice << "G\n";
 	GameUtils::WaitMs(400);
 	return true;
 }
