@@ -2,6 +2,7 @@
 #include "Global.h"
 #include <vector>
 #include "GameUtils.h"
+#include "Item.h"
 class Character;
 
 struct ShopItem
@@ -9,6 +10,7 @@ struct ShopItem
 	int id;
 	string name;
 	int price;
+	ItemType type;
 };
 
 class Shop
