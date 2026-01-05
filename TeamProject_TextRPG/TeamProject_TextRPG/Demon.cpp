@@ -2,7 +2,7 @@
 
 Demon::Demon(int level)
 {
-	name = "º¸½º";
+	name = "¸¶¿Õ";
 	isAlive = true;
 	int maxHealth = level * 45;
 	int minHealth = level * 30;
