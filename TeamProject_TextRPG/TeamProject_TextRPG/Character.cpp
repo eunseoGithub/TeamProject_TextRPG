@@ -1,5 +1,5 @@
 #include "Character.h"
-
+#include "GameUtils.h"
 
 Character::Character(string name)
 {
@@ -14,7 +14,10 @@ Character::Character(string name)
 
 	isAlive = true;
 }
-
+Character::~Character()
+{
+	inventory.clear();
+}
 void Character::PrintCharacterStatus()
 {
 	cout << "===========================\n";
@@ -74,7 +77,7 @@ void Character::AddGold(int amount)
 // 경험치 체크, 레벨업
 void Character::CheckLevelUp()
 {
-	if (experience >= 100)
+	while (experience >= 100)
 	{
 		experience -= 100;
 		LevelUp();
@@ -133,7 +136,7 @@ void Character::DrinkPotion(int index, Monster& monster)
 		if (index < 0 || index >= inventory.size())
 		{
 			cout << "잘못된 아이템 선택입니다. 다시 선택해주세요 : ";
-			cin >> index;
+			GameUtils::ReadInt("잘못된 아이템 선택입니다. 다시 선택해주세요 : ", index);
 			continue;
 		}
 
@@ -155,7 +158,8 @@ void Character::DrinkPotion(int index, Monster& monster)
 			if (monster.GetIsPoison())
 			{
 				cout << "이미 적이 중독 상태입니다. 다른 아이템을 선택해주세요. : ";
-				cin >> index;
+				GameUtils::ReadInt("이미 적이 중독 상태입니다. 다른 아이템을 선택해주세요. : ", index);
+				
 				continue;
 			}
 			cout << name << "이(가) 독 포션을 사용했습니다." << endl;
@@ -168,7 +172,7 @@ void Character::DrinkPotion(int index, Monster& monster)
 
 		default:
 			cout << "사용할 수 없는 아이템입니다. 다시 선택해주세요 : ";
-			cin >> index;
+			GameUtils::ReadInt("사용할 수 없는 아이템입니다. 다시 선택해주세요 : ", index);
 			continue;
 		}
 

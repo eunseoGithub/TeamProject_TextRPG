@@ -9,7 +9,7 @@ class Character
 {
 public:
 	Character(string name);
-
+	~Character();
 	//상태 출력
 	void PrintCharacterStatus();
 
