@@ -32,6 +32,8 @@ void Shop::PrintShopItems() const
 
 void Shop::ShowMenu(Character& player)
 {
+	player.SetShop(this);
+
 	cout << "\n[상점] 방문했습니다.\n";
 
 	while (true)
@@ -103,6 +105,46 @@ void Shop::ShowMenu(Character& player)
 	}
 }
 
+Item* Shop::CreateItemById(int id)
+{
+	Item* created = nullptr;
+
+	if (id == 1) created = new HealthPotion(50);
+	else if (id == 2) created = new AttackBoost(10);
+	else if (id == 3) created = new FirePotion(50);
+	else if (id == 4) created = new PoisonPotion(30);
+
+	if (!created) return nullptr;
+
+	owned.emplace_back(created);
+	return created;
+}
+
+Item* Shop::AcquireItemById(int id)
+{
+	int idx = id - 1;
+	if (idx < 0 || idx >= 4) return nullptr;
+
+	if (!pool[idx].empty())
+	{
+		Item* it = pool[idx].back();
+		pool[idx].pop_back();
+		return it;
+	}
+
+	return CreateItemById(id);
+}
+
+void Shop::ReleaseItem(Item* item)
+{
+	if (!item) return;
+
+	int idx = (int)item->GetType();
+	if (idx < 0 || idx >= 4) return;
+
+	pool[idx].push_back(item);
+}
+
 bool Shop::BuyItem(Character& player, int itemId)
 {
 	const ShopItem* item = FindShopItem(items, itemId);
@@ -116,33 +158,15 @@ bool Shop::BuyItem(Character& player, int itemId)
 		cout << "골드가 부족합니다." << endl;
 		return false;
 	}
-	player.AddGold(-item->price);
 
-	Item* bought = nullptr;
-
-	if (item->id == 1)
+	Item* bought = AcquireItemById(itemId);
+	if (!bought)
 	{
-		bought = new HealthPotion(50);
-	}
-	else if (item->id == 2)
-	{
-		bought = new AttackBoost(10);
-	}
-	else if (item->id == 3)
-	{
-		bought = new FirePotion(50);
-	}
-	else if (item->id == 4)
-	{
-		bought = new PoisonPotion(30);
-	}
-	else
-	{
-		cout << "잘못된 입력입니다.\n";
-		player.AddGold(item->price);
+		cout << "아이템 생성에 실패했습니다.\n";
 		return false;
 	}
 
+	player.AddGold(-item->price);
 	player.AddItem(bought);
 
 	cout << "[ 구매 ]" << item->name << "구매 완료!\n";
@@ -188,8 +212,9 @@ bool Shop::SellItem(Character& player, int inventoryIndex)
 
 	int sellPrice = static_cast<int>(originalPrice * 0.6);
 
-	delete target;
 	inv.erase(inv.begin() + inventoryIndex);
+
+	ReleaseItem(target);
 
 	player.AddGold(sellPrice);
 
