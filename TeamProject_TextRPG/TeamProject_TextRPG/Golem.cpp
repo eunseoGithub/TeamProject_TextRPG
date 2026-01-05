@@ -2,7 +2,7 @@
 
 Golem::Golem(int level)
 {
-	name = "°ñ·½";
+	name = "ê³¨ë ˜";
 	isAlive = true;
 	int maxHealth = level * 30;
 	int minHealth = level * 20;

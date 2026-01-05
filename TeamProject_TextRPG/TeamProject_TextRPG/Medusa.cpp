@@ -2,7 +2,7 @@
 
 Medusa::Medusa(int level)
 {
-	name = "�޵λ�";
+	name = "메두사";
 	isAlive = true;
 	int maxHealth = level * 30;
 	int minHealth = level * 20;

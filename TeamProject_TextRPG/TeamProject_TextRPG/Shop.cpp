@@ -17,8 +17,8 @@ Shop::Shop()
 {
 	items.push_back({ 1, "체력 포션 (+ 50)", 20 });
 	items.push_back({ 2, "공격력 포션 (+ 10)", 10 });
-  items.push_back({ 3, "화염 포션 ()", 50});
-  items.push_back({ 4, "독 포션 ()",30)};
+	items.push_back({ 3, "화염 포션 ()", 50});
+	items.push_back({ 4, "독 포션 ()",30 });
 }
 
 void Shop::PrintShopItems() const

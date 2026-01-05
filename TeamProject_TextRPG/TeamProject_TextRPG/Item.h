@@ -4,7 +4,7 @@
 #include "Monster.h"
 
 class Character;
-
+class Monster;
 enum class ItemType
 {
 	HealthPotion = 0,

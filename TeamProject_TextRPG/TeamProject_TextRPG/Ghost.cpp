@@ -2,7 +2,7 @@
 
 Ghost::Ghost(int level)
 {
-	name = "°í½ºÆ®";
+	name = "ê³ ìŠ¤íŠ¸";
 	isAlive = true;
 	int maxHealth = level * 30;
 	int minHealth = level * 20;

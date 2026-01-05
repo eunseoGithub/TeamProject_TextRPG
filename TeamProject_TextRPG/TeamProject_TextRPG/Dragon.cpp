@@ -2,7 +2,7 @@
 
 Dragon::Dragon(int level)
 {
-	name = "µå·¡°ï";
+	name = "ë“œëž˜ê³¤";
 	isAlive = true;
 	int maxHealth = level * 45;
 	int minHealth = level * 30;
@@ -12,10 +12,10 @@ Dragon::Dragon(int level)
 	int minAttack = level * 8;
 	attack = rand() % (maxAttack - minAttack + 1) + minAttack;
 
-	cout << "...Äô. ...Äô! ...Äô!!!" << endl;
-	cout << "Áö¸éÀÌ Èçµé¸®¸ç °Å´ëÇÑ ±×¸²ÀÚ°¡ ´ç½ÅÀ» Áý¾î»ïÅµ´Ï´Ù." << endl;
-	cout << "ÃÖÁ¾ º¸½º [" << name << "]°¡ À§¾ÐÀûÀÎ ¸ð½ÀÀ¸·Î ³ªÅ¸³µ½À´Ï´Ù!" << endl;
-	cout << "[" << name << "] : °¨È÷ ³» ¿µ¿ª¿¡ ¹ßÀ» µéÀÎ ´ë°¡´Â... ¿ÀÁ÷ Å¸¿À¸£´Â Á×À½»ÓÀÌ´Ù." << endl;
+	cout << "...ì¿µ. ...ì¿µ! ...ì¿µ!!!" << endl;
+	cout << "ì§€ë©´ì´ í”ë“¤ë¦¬ë©° ê±°ëŒ€í•œ ê·¸ë¦¼ìžê°€ ë‹¹ì‹ ì„ ì§‘ì–´ì‚¼í‚µë‹ˆë‹¤." << endl;
+	cout << "ìµœì¢… ë³´ìŠ¤ [" << name << "]ê°€ ìœ„ì••ì ì¸ ëª¨ìŠµìœ¼ë¡œ ë‚˜íƒ€ë‚¬ìŠµë‹ˆë‹¤!" << endl;
+	cout << "[" << name << "] : ê°ížˆ ë‚´ ì˜ì—­ì— ë°œì„ ë“¤ì¸ ëŒ€ê°€ëŠ”... ì˜¤ì§ íƒ€ì˜¤ë¥´ëŠ” ì£½ìŒë¿ì´ë‹¤." << endl;
 }
 
 void Dragon::Attack(Character& character)

@@ -19,6 +19,7 @@ public:
 	virtual bool IsBoss() const { return false; }
 	void TakeTickDamage(int damage);
 	int GetIsPoison();
+	void SetIsPoison(bool poison);
 protected:
 	string name;
 	int health;

@@ -145,30 +145,30 @@ void Character::DrinkPotion(int index, Monster& monster)
 
 		switch (item->GetType())
 		{
-		case ItemType::HpPotion:
+		case ItemType::HealthPotion:
 			cout << name << "이(가) HP 포션을 사용했습니다!" << endl;
-			Heal(item->GetValue());
+			item->Use(*this);
 			break;
 
-		case ItemType::AttackPotion:
+		case ItemType::AttackBoost:
 			cout << name << "이(가) 공격력 포션을 사용했습니다." << endl;
-			AddTempAttack(item->GetValue());
+			item->Use(*this);
 			break;
 
 		case ItemType::PoisonPotion:
-			if (monster.IsPoison())
+			if (monster.GetIsPoison())
 			{
 				cout << "이미 적이 중독 상태입니다. 다른 아이템을 선택해주세요." << endl;
 				cin >> index;
 				continue;
 			}
 			cout << name << "이(가) 독 포션을 사용했습니다." << endl;
-			monster.SetPoison(true);
+			monster.SetIsPoison(true);
 			Attack(monster);
 			break;
 
 		case ItemType::FirePotion:
-			PotionAttack(monster, item->GetValue());
+			PotionAttack(monster, level * 20);
 			break;
 
 		default:

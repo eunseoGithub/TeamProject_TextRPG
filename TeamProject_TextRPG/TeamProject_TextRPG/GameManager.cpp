@@ -91,7 +91,10 @@ void GameManager::CharacterAct()
 	}
 	else
 	{
-		character->DrinkPotion();
+		cout << "사용할 포션 번호를 입력하세요.";
+		int index;
+		cin >> index;
+		character->DrinkPotion(index,*currentMonster);
 	}
 	GameUtils::WaitMs(300);
 	Render();

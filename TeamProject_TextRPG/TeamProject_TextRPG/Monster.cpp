@@ -62,7 +62,10 @@ void Monster::SetIsAlive(bool alive)
 {
 	isAlive = alive;
 }
-
+void Monster::SetIsPoison(bool poison)
+{
+	isPoison = poison;
+}
 void Monster::PrintMonsterStatus()
 {
 	cout << "===========================\n";
