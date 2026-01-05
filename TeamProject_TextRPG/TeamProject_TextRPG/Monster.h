@@ -25,7 +25,6 @@ protected:
 	int health;
 	int attack;
 	bool isAlive;
-	bool isPoison;
-	bool isFire;
+	bool isPoison = false;
 	int tickCount = 0;
 };

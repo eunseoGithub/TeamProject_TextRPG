@@ -2,7 +2,7 @@
 
 Magician::Magician(string name) : Character(name)
 {
-	maxhp = 150;
+	maxhp = 150000;
 	hp = maxhp;
 	attack = 50;
 }

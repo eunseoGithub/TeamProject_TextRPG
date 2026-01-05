@@ -1,5 +1,6 @@
 #include "Character.h"
 
+
 Character::Character(string name)
 {
 	this->name = name;
@@ -119,13 +120,8 @@ void Character::ResetTempAttack()
 }
 
 //아이템 포션
-
-
 void Character::DrinkPotion(int index, Monster& monster)
 {
-	cout << "===========================\n";
-	cout << "   [ 아 이 템 선 택 창 ]                         \n";
-	cout << "===========================\n";
 
 	if (inventory.empty())
 	{
@@ -136,7 +132,7 @@ void Character::DrinkPotion(int index, Monster& monster)
 	{
 		if (index < 0 || index >= inventory.size())
 		{
-			cout << "잘못된 아이템 선택입니다. 다시 선택해주세요" << endl;
+			cout << "잘못된 아이템 선택입니다. 다시 선택해주세요 : ";
 			cin >> index;
 			continue;
 		}
@@ -158,21 +154,21 @@ void Character::DrinkPotion(int index, Monster& monster)
 		case ItemType::PoisonPotion:
 			if (monster.GetIsPoison())
 			{
-				cout << "이미 적이 중독 상태입니다. 다른 아이템을 선택해주세요." << endl;
+				cout << "이미 적이 중독 상태입니다. 다른 아이템을 선택해주세요. : ";
 				cin >> index;
 				continue;
 			}
 			cout << name << "이(가) 독 포션을 사용했습니다." << endl;
 			monster.SetIsPoison(true);
-			Attack(monster);
+			//Attack(monster);
 			break;
 
 		case ItemType::FirePotion:
-			PotionAttack(monster, level * 20);
+			item->Use(monster);
 			break;
 
 		default:
-			cout << "사용할 수 없는 아이템입니다. 다시 선택해주세요 " << endl;
+			cout << "사용할 수 없는 아이템입니다. 다시 선택해주세요 : ";
 			cin >> index;
 			continue;
 		}

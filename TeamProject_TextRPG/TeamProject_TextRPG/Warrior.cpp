@@ -2,7 +2,7 @@
 
 Warrior::Warrior(string name) : Character(name)
 {
-	maxhp = 250;
+	maxhp = 250000;
 	hp = maxhp;
 	attack = 35;
 }
