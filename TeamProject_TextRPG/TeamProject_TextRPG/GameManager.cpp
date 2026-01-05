@@ -8,51 +8,16 @@ GameManager::GameManager()
 	shopManager = new Shop();
 }
 
-void GameManager::GenerateMonster(int level)
-{
-	Monster* randMonster;
-	if (character->GetLevel() % 10 == 0)
-	{
-		randMonster = new Boss(level);
-	}
-	else
-	{
-		int randType = rand() % 4;
-
-		switch (randType)
-		{
-		case troll:
-			randMonster = new Troll(level);
-			break;
-		case orc:
-			randMonster = new Orc(level);
-			break;
-		case slime:
-			randMonster = new Slime(level);
-			break;
-		case goblin:
-			randMonster = new Goblin(level);
-			break;
-		default:
-			randMonster = nullptr;
-			break;
-		}
-	}
-	if (randMonster == nullptr)
-	{
-		cout << "몬스터 생성에 오류가 발생했습니다." << endl;
-	}
-	currentMonster = randMonster;
-	if (currentMonster != nullptr)
-	{
-		totalMonster.push_back(currentMonster->GetName());
-	}
-}
-
 bool GameManager::GamePlay()
 {
-	GenerateMonster(character->GetLevel());
-	
+	currentMonster = stageManager.RequestNextMonster(character->GetLevel());
+	if (!currentMonster)
+	{
+		cout << "몬스터 생성에 오류가 발생했습니다." << endl;
+		return false;
+	}
+	totalMonster.push_back(currentMonster->GetName());
+
 	while (true)
 	{
 		CharacterAct();
@@ -103,7 +68,8 @@ void GameManager::DisplayInventory()const
 bool GameManager::CreateCharacter()
 {
 	cout << "\n===========================\n";
-	cout << "  [ 새로운 모험가 생성 ]                 \n";
+	//cout << "  [ 새로운 모험가 생성 ]                 \n";
+	GameUtils::PrintW(L"  [ 새로운 모험가 생성 ]                 \n");
 	cout << "===========================\n";
 	cout << "캐릭터의 이름을 정해주세요 : ";
 	string name;
@@ -189,11 +155,11 @@ bool GameManager::HandleMonsterDefeat()
 	if (!currentMonster->GetIsAlive())
 	{
 		bool isBoss = currentMonster->IsBoss();
-		int playerLevel = character->GetLevel();
 
 		currentMonster->Dead();
 		character->AddExperience(50);
 		GameUtils::WaitMs(300);
+		
 		int randomGold = rand() % 11 + 10;
 		character->AddGold(randomGold);
 
@@ -205,10 +171,14 @@ bool GameManager::HandleMonsterDefeat()
 		delete currentMonster;
 		currentMonster = nullptr;
 		
-		if (isBoss && playerLevel >= 10)
+		if (isBoss)
 		{
-			GameWin();
-			return false;
+			bool isGameClear = stageManager.OnBossDefeated();
+			if (isGameClear)
+			{
+				GameWin();
+				return false;
+			}
 		}
 		
 		return false;

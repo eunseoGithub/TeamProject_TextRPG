@@ -137,6 +137,8 @@
     <ClInclude Include="Orc.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="Slime.h" />
+    <ClInclude Include="Stage.h" />
+    <ClInclude Include="StageManager.h" />
     <ClInclude Include="Troll.h" />
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +155,8 @@
     <ClCompile Include="Orc.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Slime.cpp" />
+    <ClCompile Include="Stage.cpp" />
+    <ClCompile Include="StageManager.cpp" />
     <ClCompile Include="Troll.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
