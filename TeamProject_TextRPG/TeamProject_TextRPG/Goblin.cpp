@@ -2,7 +2,7 @@
 
 Goblin::Goblin(int level)
 {
-	name = "°íºí¸°";
+	name = "ê³ ë¸”ë¦°";
 	isAlive = true;
 	int maxHealth = level * 30;
 	int minHealth = level * 20;

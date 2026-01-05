@@ -60,6 +60,15 @@
     <ClInclude Include="PoisonPotion.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="GameUtils.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="StageManager.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Stage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Character.cpp">
@@ -105,6 +114,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="PoisonPotion.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameUtils.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="StageManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Stage.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

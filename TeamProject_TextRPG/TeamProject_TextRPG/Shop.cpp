@@ -15,58 +15,64 @@ static const ShopItem* FindShopItem(const vector<ShopItem>& items, int id)
 
 Shop::Shop()
 {
-	items.push_back({ 1, "Ã¼·Â Æ÷¼Ç (+ 50)", 20 });
-	items.push_back({ 2, "°ø°İ·Â Æ÷¼Ç (+ 10)", 10 });
-	items.push_back({ 3, "È­¿° Æ÷¼Ç (ÅõÃ´)", 50 });
-	items.push_back({ 4, "µ¶ Æ÷¼Ç (ÅõÃ´)", 30 });
+	items.push_back({ 1, "ì²´ë ¥ í¬ì…˜ (+ 50)", 20 });
+	items.push_back({ 2, "ê³µê²©ë ¥ í¬ì…˜ (+ 10)", 10 });
+  items.push_back({ 3, "í™”ì—¼ í¬ì…˜ ()", 50});
+  items.push_back({ 4, "ë… í¬ì…˜ ()",30)};
 }
 
 void Shop::PrintShopItems() const
 {
-	cout << "== »óÁ¡ ¾ÆÀÌÅÛ ¸ñ·Ï ==\n";
+	cout << "== ìƒì  ì•„ì´í…œ ëª©ë¡ ==\n";
 	for (const auto& it : items)
 	{
-		cout << "[ " << it.id << " ] " << it.name << " - °¡°İ: " << it.price << "G\n";
+		cout << "[" << it.id << "]" << it.name << " - ê°€ê²©: " << it.price << "G\n";
 	}
 }
 
 void Shop::ShowMenu(Character& player)
 {
-	cout << "\n[»óÁ¡] ¹æ¹®Çß½À´Ï´Ù.\n";
+	cout << "\n[ìƒì ] ë°©ë¬¸í–ˆìŠµë‹ˆë‹¤.\n";
 
 	while (true)
 	{
-		cout << "\n=== »óÁ¡ ¸Ş´º ===\n";
-		cout << "0. ¸Ş´ºÆÇ\n";
-		cout << "1. ¾ÆÀÌÅÛ »ç±â\n";
-		cout << "2. ¾ÆÀÌÅÛ ÆÈ±â\n";
-		cout << "3. »óÁ¡ ³ª°¡±â\n";
-		cout << "¼±ÅÃ: ";
+		GameUtils::ClearScreen();
+		cout << "\n=== ìƒì  ë©”ë‰´ ===\n";
+		cout << "0. ë©”ë‰´íŒ\n";
+		cout << "1. ì•„ì´í…œ ì‚¬ê¸°\n";
+		cout << "2. ì•„ì´í…œ íŒ”ê¸°\n";
+		cout << "3. ìƒì  ë‚˜ê°€ê¸°\n";
+		cout << "ì„ íƒ: ";
 
 		int choice;
 		cin >> choice;
 
 		if (choice == 0)
 		{
+			GameUtils::ClearScreen();
 			PrintShopItems();
+			GameUtils::WaitMs(700);
 		}
 		else if (choice == 1)
 		{
+			GameUtils::ClearScreen();
 			PrintShopItems();
-			cout << "±¸¸ÅÇÒ ¾ÆÀÌÅÛ ¹øÈ£ ÀÔ·Â : ";
+			cout << "êµ¬ë§¤í•  ì•„ì´í…œ ë²ˆí˜¸ ì…ë ¥ : ";
 			int id;
 			cin >> id;
 			BuyItem(player, id);
+			GameUtils::WaitMs(700);
 		}
 		else if (choice == 2)
 		{
+			GameUtils::ClearScreen();
 			auto& inv = player.GetInventory();
 
-			cout << "=== ÀÎº¥Åä¸® ¸ñ·Ï ===\n";
+			cout << "=== ì¸ë²¤í† ë¦¬ ëª©ë¡ ===\n";
 
 			if (inv.empty())
 			{
-				cout << "(ºñ¾îÀÖÀ½)\n";
+				cout << "(ë¹„ì–´ìˆìŒ)\n";
 			}
 			else
 			{
@@ -76,19 +82,22 @@ void Shop::ShowMenu(Character& player)
 				}
 			}
 
-			cout << "ÆÇ¸ÅÇÒ ¾ÆÀÌÅÛ ¹øÈ£ ÀÔ·Â: ";
+			cout << "íŒë§¤í•  ì•„ì´í…œ ë²ˆí˜¸ ì…ë ¥: ";
 			int inventoryIndex;
 			cin >> inventoryIndex;
 			SellItem(player, inventoryIndex);
+			GameUtils::WaitMs(700);
 		}
 		else if (choice == 3)
 		{
-			cout << "»óÁ¡À» ³ª°©´Ï´Ù.\n";
+			cout << "ìƒì ì„ ë‚˜ê°‘ë‹ˆë‹¤.\n";
+			GameUtils::WaitMs(400);
 			break;
 		}
 		else
 		{
-			cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.\n";
+			cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.\n";
+			GameUtils::WaitMs(500);
 		}
 	}
 }
@@ -98,10 +107,14 @@ bool Shop::BuyItem(Character& player, int itemId)
 	const ShopItem* item = FindShopItem(items, itemId);
 	if (!item)
 	{
-		cout << "ÀÔ·ÂÇÑ ¹øÈ£ÀÇ ¾ÆÀÌÅÛÀÌ »óÁ¡¿¡ ¾ø½À´Ï´Ù.\n";
+		cout << "ì…ë ¥í•œ ë²ˆí˜¸ì˜ ì•„ì´í…œì´ ìƒì ì— ì—†ìŠµë‹ˆë‹¤.\n";
 		return false;
 	}
-
+	if (player.GetGold() < item->price)
+	{
+		cout << "ê³¨ë“œê°€ ë¶€ì¡±í•©ë‹ˆë‹¤." << endl;
+		return false;
+	}
 	player.AddGold(-item->price);
 
 	Item* bought = nullptr;
@@ -124,14 +137,15 @@ bool Shop::BuyItem(Character& player, int itemId)
 	}
 	else
 	{
-		cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.\n";
+		cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.\n";
 		player.AddGold(item->price);
 		return false;
 	}
 
 	player.AddItem(bought);
 
-	cout << "[ ±¸¸Å ]" << item->name << "±¸¸Å ¿Ï·á!\n";
+	cout << "[ êµ¬ë§¤ ]" << item->name << "êµ¬ë§¤ ì™„ë£Œ!\n";
+	GameUtils::WaitMs(400);
 	return true;
 }
 
@@ -141,13 +155,13 @@ bool Shop::SellItem(Character& player, int inventoryIndex)
 
 	if (inv.empty())
 	{
-		cout << "ÀÎº¥Åä¸®¿¡ ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.\n";
+		cout << "ì¸ë²¤í† ë¦¬ì— ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.\n";
 		return false;
 	}
 
 	if (inventoryIndex < 0 || inventoryIndex >= (int)inv.size())
 	{
-		cout << "Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù.\n";
+		cout << "ì˜ëª»ëœ ì…ë ¥ì…ë‹ˆë‹¤.\n";
 		return false;
 	}
 
@@ -166,7 +180,7 @@ bool Shop::SellItem(Character& player, int inventoryIndex)
 
 	if (originalPrice < 0)
 	{
-		cout << "ÀÌ ¾ÆÀÌÅÛÀº ÆÇ¸ÅÇÒ ¼ö ¾ø½À´Ï´Ù.\n";
+		cout << "ì´ ì•„ì´í…œì€ íŒë§¤í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n";
 
 		return false;
 	}
@@ -178,7 +192,7 @@ bool Shop::SellItem(Character& player, int inventoryIndex)
 
 	player.AddGold(sellPrice);
 
-	cout << "[ ÆÇ¸Å ]" << name << "ÆÇ¸Å ¿Ï·á! (+" << sellPrice << "G)\n";
-
+	cout << "[ íŒë§¤ ]" << name << "íŒë§¤ ì™„ë£Œ! (+" << sellPrice << "G\n";
+	GameUtils::WaitMs(400);
 	return true;
 }

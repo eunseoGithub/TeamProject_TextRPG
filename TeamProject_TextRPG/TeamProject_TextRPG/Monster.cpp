@@ -1,7 +1,5 @@
 #include "Monster.h"
 
-//Monster::Monster(int level){}
-
 string Monster::GetName()
 {
 	return name;
@@ -24,12 +22,12 @@ void Monster::TakeDamage(int damage)
 	{
 		isAlive = false;
 	}
-	cout << name << "(ÀÌ)°¡ " << damage << "¸¸Å­ µ¥¹ÌÁö¸¦ ÀÔ¾ú½À´Ï´Ù!" << endl;
+	cout << name << "(ì´)ê°€ " << damage << "ë§Œí¼ ë°ë¯¸ì§€ë¥¼ ìž…ì—ˆìŠµë‹ˆë‹¤!" << endl;
 }
 
 void Monster::Dead()
 {
-	cout << name << "(ÀÌ)°¡ Á×¾ú½À´Ï´Ù!" << endl;
+	cout << name << "(ì´)ê°€ ì£½ì—ˆìŠµë‹ˆë‹¤!" << endl;
 }
 
 bool Monster::GetIsAlive()
@@ -45,10 +43,10 @@ void Monster::SetIsAlive(bool alive)
 void Monster::PrintMonsterStatus()
 {
 	cout << "===========================\n";
-	cout << "   [ ¸ó½ºÅÍ ½º ÅÝ Ã¢ ]                         \n";
+	cout << "   [ ëª¬ìŠ¤í„° ìŠ¤ í…Ÿ ì°½ ]                         \n";
 	cout << "===========================\n";
-	cout << "ÀÌ¸§ : " << name << endl;
-	cout << "°ø°Ý·Â : " << attack << endl;
+	cout << "ì´ë¦„ : " << name << endl;
+	cout << "ê³µê²©ë ¥ : " << attack << endl;
 	cout << "HP : " << health << endl;
 	cout << "===========================\n";
 }

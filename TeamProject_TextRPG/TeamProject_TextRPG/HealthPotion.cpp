@@ -7,11 +7,11 @@ HealthPotion::HealthPotion(int heal)
 
 string HealthPotion::GetName() const
 {
-	return "Ã¼·Â Æ÷¼Ç (+ 50)";
+	return "ì²´ë ¥ í¬ì…˜ (+ 50)";
 }
 
 void HealthPotion::Use(Character& character)
 {
 	character.Heal(healAmount);
-	cout << "Ã¼·Â Æ÷¼ÇÀ» »ç¿ëÇß½À´Ï´Ù.\n";
+  cout << "ì²´ë ¥ í¬ì…˜ì„ ì‚¬ìš©í–ˆìŠµë‹ˆë‹¤.\n\n";
 }

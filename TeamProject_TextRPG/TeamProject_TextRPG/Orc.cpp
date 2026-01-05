@@ -2,7 +2,7 @@
 
 Orc::Orc(int level)
 {
-	name = "ø¿≈©";
+	name = "Ïò§ÌÅ¨";
 	isAlive = true;
 	int maxHealth = level * 30;
 	int minHealth = level * 20;
