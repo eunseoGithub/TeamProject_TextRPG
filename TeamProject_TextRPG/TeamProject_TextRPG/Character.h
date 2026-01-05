@@ -3,6 +3,10 @@
 #include "Monster.h"
 #include "Item.h"
 #include <vector>
+#include <cstdarg>
+#include <type_traits>
+#include <utility>
+
 class Item;
 class Monster;
 class Character
@@ -31,6 +35,13 @@ public:
 	void AddGold(int amount);
 
 	//인벤토리
+	template<typename ItemImpl, class... Args>
+	std::enable_if_t <std::is_base_of_v<Item, ItemImpl>>
+	AddItem(Args&&... args)
+	{
+		Item* item = new ItemImpl(std::forward<Args>(args)...);
+		inventory.push_back(item);
+	}
 	void AddItem(Item* item);
 	vector<Item*>& GetInventory();
 

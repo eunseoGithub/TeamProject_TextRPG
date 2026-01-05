@@ -165,8 +165,8 @@ bool GameManager::HandleMonsterDefeat()
 
 		if (rand() % 10 < 3)
 		{
-			Item* item = (rand() % 2 == 0) ? (Item*)new AttackBoost() : (Item*)new HealthPotion();
-			character->AddItem(item);
+			//Item* item = (rand() % 2 == 0) ? (Item*)new AttackBoost() : (Item*)new HealthPotion();
+			character->AddItem<AttackBoost>();
 		}
 		delete currentMonster;
 		currentMonster = nullptr;
