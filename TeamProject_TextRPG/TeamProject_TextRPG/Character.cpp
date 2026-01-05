@@ -89,7 +89,10 @@ void Character::LevelUp()
 
 	cout << name << "***레벨 업! 현재 레벨 : " << level << "***" << endl;
 }
-
+int Character::GetGold()
+{
+	return gold;
+}
 void Character::Heal(int amount)
 {
 	hp += amount;

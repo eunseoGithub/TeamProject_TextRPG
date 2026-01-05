@@ -1,8 +1,8 @@
-#include "Goblin.h"
+#include "Ghost.h"
 
-Goblin::Goblin(int level)
+Ghost::Ghost(int level)
 {
-	name = "ê³ ë¸”ë¦°";
+	name = "°í½ºÆ®";
 	isAlive = true;
 	int maxHealth = level * 30;
 	int minHealth = level * 20;
@@ -14,8 +14,7 @@ Goblin::Goblin(int level)
 	PrintMonsterStatus();
 }
 
-void Goblin::Attack(Character& character)
+void Ghost::Attack(Character& character)
 {
 	character.TakeDamage(attack);
 }
-

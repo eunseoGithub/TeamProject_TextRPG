@@ -1,8 +1,8 @@
-#include "Goblin.h"
+#include "Medusa.h"
 
-Goblin::Goblin(int level)
+Medusa::Medusa(int level)
 {
-	name = "고블린";
+	name = "�޵λ�";
 	isAlive = true;
 	int maxHealth = level * 30;
 	int minHealth = level * 20;
@@ -14,8 +14,7 @@ Goblin::Goblin(int level)
 	PrintMonsterStatus();
 }
 
-void Goblin::Attack(Character& character)
+void Medusa::Attack(Character& character)
 {
 	character.TakeDamage(attack);
 }
-

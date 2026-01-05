@@ -10,20 +10,19 @@ class Character
 public:
 	Character(string name);
 
-	//»óÅÂ Ãâ·Â
+	//ìƒíƒœ ì¶œë ¥
 	void PrintCharacterStatus();
 
-	//ÀüÅõ
 	virtual void Attack(Monster& monster);
 	void TakeDamage(int damage);
 	void Dead();
 
-	//°æÇèÄ¡ / ·¹º§
+	//ê²½í—˜ì¹˜ / ë ˆë²¨
 	void LevelUp();
 	void CheckLevelUp();
 	void AddExperience(int amount);
 
-	//¾ÆÀÌÅÛ È¿°ú
+	//ì•„ì´í…œ íš¨ê³¼
 	void Heal(int amount);
 	void AddTempAttack(int amount);
 	void ResetTempAttack();
@@ -31,12 +30,13 @@ public:
 	void PotionAttack(Monster& monster, int damage);
 	void AddGold(int amount);
 
-	//ÀÎº¥Åä¸®
+	//ì¸ë²¤í† ë¦¬
 	void AddItem(Item* item);
 	vector<Item*>& GetInventory();
 
 	int GetLevel();
 	bool GetIsAlive();
+	int GetGold();
 
 	void SetIsAlive(bool isAlive);
 

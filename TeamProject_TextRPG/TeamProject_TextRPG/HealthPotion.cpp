@@ -1,18 +1,17 @@
 #include "HealthPotion.h"
-#include <iostream>
+#include "Character.h"
 
 HealthPotion::HealthPotion(int heal)
-	: healAmount(heal)
-{
+	: Item(ItemType::HealthPotion), healAmount(heal) {
 }
 
-std::string HealthPotion::GetName() const
+string HealthPotion::GetName() const
 {
-	return "Ã¼·Â Æ÷¼Ç (+ 50)";
+	return "ì²´ë ¥ í¬ì…˜ (+ 50)";
 }
 
 void HealthPotion::Use(Character& character)
 {
 	character.Heal(healAmount);
-	std::cout << "Ã¼·Â Æ÷¼ÇÀ» »ç¿ëÇß½À´Ï´Ù.\n\n";
+  cout << "ì²´ë ¥ í¬ì…˜ì„ ì‚¬ìš©í–ˆìŠµë‹ˆë‹¤.\n\n";
 }

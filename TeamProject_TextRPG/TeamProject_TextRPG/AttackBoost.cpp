@@ -1,18 +1,18 @@
 #include "AttackBoost.h"
-#include <iostream>
+#include "Character.h"
 
 AttackBoost::AttackBoost(int bonus)
-	: bonusAttack(bonus)
+	: Item(ItemType::AttackBoost), bonusAttack(bonus)
 {
 }
 
-std::string AttackBoost::GetName() const
+string AttackBoost::GetName() const
 {
-	return "∞¯∞›∑¬ ¡ı∞° (+ 10)";
+	return "Í≥µÍ≤©Î†• Ï¶ùÍ∞Ä (+ 10)";
 }
 
 void AttackBoost::Use(Character& character)
 {
 	character.AddTempAttack(bonusAttack); 
-	std::cout << "∞¯∞›∑¬¿Ã ¡ı∞°«œø¥Ω¿¥œ¥Ÿ.\n\n";
+  cout << "Í≥µÍ≤©Î†•Ïù¥ Ï¶ùÍ∞ÄÌïòÏòÄÏäµÎãàÎã§.\n\n";
 }
