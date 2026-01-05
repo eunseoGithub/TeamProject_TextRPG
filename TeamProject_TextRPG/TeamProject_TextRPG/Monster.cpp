@@ -62,6 +62,15 @@ void Monster::SetIsAlive(bool alive)
 {
 	isAlive = alive;
 }
+void Monster::SetIsPoison(bool poison)
+{
+	isPoison = poison;
+}
+
+bool Monster::GetIsBoss()const
+{
+	return isBoss;
+}
 
 void Monster::PrintMonsterStatus()
 {

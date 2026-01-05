@@ -2,7 +2,7 @@
 
 Demon::Demon(int level)
 {
-	name = "¸¶¿Õ";
+	name = "ë§ˆì™•";
 	isAlive = true;
 	int maxHealth = level * 45;
 	int minHealth = level * 30;
@@ -11,10 +11,10 @@ Demon::Demon(int level)
 	int maxAttack = level * 15;
 	int minAttack = level * 8;
 	attack = rand() % (maxAttack - minAttack + 1) + minAttack;
-
-	cout << "ÁÖº¯ÀÇ ºûÀÌ ¸ðµÎ »ç¶óÁö°í Â÷°¡¿î Á¤ÀûÀÌ Èå¸¨´Ï´Ù..." << endl;
-	cout << "¾îµÒ ¼Ó¿¡¼­ ºÓ°Ô ºû³ª´Â µÎ ´«ÀÌ ´ç½ÅÀ» ÇâÇÕ´Ï´Ù." << endl;
-	cout << "[" << name << "] : " << "ÀÛÀº ºûÁ¶Â÷ Çã¶ôµÇÁö ¾Ê´Â ÀÌ°÷ÀÌ ¹Ù·Î ³× ¹«´ýÀÌ´Ù." << endl;
+	isBoss = true;
+	cout << "ì£¼ë³€ì˜ ë¹›ì´ ëª¨ë‘ ì‚¬ë¼ì§€ê³  ì°¨ê°€ìš´ ì •ì ì´ íë¦…ë‹ˆë‹¤..." << endl;
+	cout << "ì–´ë‘  ì†ì—ì„œ ë¶‰ê²Œ ë¹›ë‚˜ëŠ” ë‘ ëˆˆì´ ë‹¹ì‹ ì„ í–¥í•©ë‹ˆë‹¤." << endl;
+	cout << "[" << name << "] : " << "ìž‘ì€ ë¹›ì¡°ì°¨ í—ˆë½ë˜ì§€ ì•ŠëŠ” ì´ê³³ì´ ë°”ë¡œ ë„¤ ë¬´ë¤ì´ë‹¤." << endl;
 }
 
 void Demon::Attack(Character& character)

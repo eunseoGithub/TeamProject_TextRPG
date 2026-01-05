@@ -4,11 +4,19 @@
 
 using namespace std;
 
-enum MonsterType
+enum StageOneMonsterType
 {
 	troll = 0,
 	orc,
 	slime,
 	goblin,
 };
-extern MonsterType gMonsterType;
+enum StageTwoMonsterType
+{
+	ghost = 0,
+	golem,
+	medusa,
+	ogre,
+};
+extern StageOneMonsterType gOneMonsterType;
+extern StageTwoMonsterType gTwoMonsterType;

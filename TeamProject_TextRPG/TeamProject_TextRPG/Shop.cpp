@@ -17,8 +17,8 @@ Shop::Shop()
 {
 	items.push_back({ 1, "체력 포션 (+ 50)", 20 });
 	items.push_back({ 2, "공격력 포션 (+ 10)", 10 });
-  items.push_back({ 3, "화염 포션 ()", 50});
-  items.push_back({ 4, "독 포션 ()",30)};
+	items.push_back({ 3, "화염 포션 (투척)", 50});
+	items.push_back({ 4, "독 포션 (투척)",30 });
 }
 
 void Shop::PrintShopItems() const
@@ -38,6 +38,7 @@ void Shop::ShowMenu(Character& player)
 	{
 		GameUtils::ClearScreen();
 		cout << "\n=== 상점 메뉴 ===\n";
+		cout << "현재 보유 골드 : " << player.GetGold() << endl;
 		cout << "0. 메뉴판\n";
 		cout << "1. 아이템 사기\n";
 		cout << "2. 아이템 팔기\n";

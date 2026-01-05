@@ -2,12 +2,18 @@
 #include <cstdlib>
 #include "Monster.h"
 
-#include "Boss.h"
 #include "Troll.h"
 #include "Orc.h"
 #include "Slime.h"
 #include "Goblin.h"
-// 스테이지 2용 몬스터 header 추가
+#include "Dragon.h"
+
+#include "Demon.h"
+#include "Ghost.h"
+#include "Golem.h"
+#include "Medusa.h"
+#include "Ogre.h"
+
 #include "Global.h"
 
 Stage::Stage(int stageIndex, int bossLevelThreshold)
@@ -38,35 +44,16 @@ Monster* Stage::SpawnNextMonster(int playerLevel) const
 
 Monster* Stage::SpawnBoss(int level) const
 {
-	//if (stageIndex == 1) return Stage1Boss(level);
-	//if (stageIndex == 2) return Stage2Boss(level);
-	return new Boss(level);
+	if (stageIndex == 1) return new Dragon(level);
+	if (stageIndex == 2) return new Demon(level);
+	return nullptr;
 }
 
 Monster* Stage::SpawnRandomNormalMonster(int level) const
 {
 	int randType = rand() % 4;
 
-	switch (randType)
-	{
-	case troll:
-		return new Troll(level);
-		break;
-	case orc:
-		return new Orc(level);
-		break;
-	case slime:
-		return new Slime(level);
-		break;
-	case goblin:
-		return new Goblin(level);
-		break;
-	default:
-		return nullptr;
-		break;
-	}
-
-	/*if (stageIndex == 1)
+	if (stageIndex == 1)
 	{
 		switch (randType)
 		{
@@ -91,22 +78,22 @@ Monster* Stage::SpawnRandomNormalMonster(int level) const
 	{
 		switch (randType)
 		{
-		case troll:
-			return new Troll(level);
+		case ghost:
+			return new Ghost(level);
 			break;
-		case orc:
-			return new Orc(level);
+		case golem:
+			return new Golem(level);
 			break;
-		case slime:
-			return new Slime(level);
+		case medusa:
+			return new Medusa(level);
 			break;
-		case goblin:
-			return new Goblin(level);
+		case ogre:
+			return new Ogre(level);
 			break;
 		default:
 			return nullptr;
 			break;
 		}
-	}*/
+	}
 	return nullptr;
 }

@@ -2,7 +2,7 @@
 
 Ogre::Ogre(int level)
 {
-	name = "¿À°Å";
+	name = "ì˜¤ê±°";
 	isAlive = true;
 	int maxHealth = level * 30;
 	int minHealth = level * 20;

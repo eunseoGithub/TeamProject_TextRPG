@@ -8,11 +8,11 @@ FirePotion::FirePotion(int dmg)
 
 string FirePotion::GetName() const
 {
-	return "È­¿° Æ÷¼Ç (ÅõÃ´)";
+	return "í™”ì—¼ í¬ì…˜ (íˆ¬ì²™)";
 }
 
 void FirePotion::Use(Monster& monster)
 {
 	monster.TakeDamage(damage);
-	cout << "È­¿° Æ÷¼ÇÀ» ÅõÃ´Çß½À´Ï´Ù! (" << damage << "µ¥¹ÌÁö)\n";
+	cout << "í™”ì—¼ í¬ì…˜ì„ íˆ¬ì²™í–ˆìŠµë‹ˆë‹¤! (" << damage << "ë°ë¯¸ì§€)\n";
 }

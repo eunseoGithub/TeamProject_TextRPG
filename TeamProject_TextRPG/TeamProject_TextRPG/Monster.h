@@ -16,15 +16,16 @@ public:
 	void SetIsAlive(bool alive);
 	virtual ~Monster() = default;
 	void PrintMonsterStatus();
-	virtual bool IsBoss() const { return false; }
 	void TakeTickDamage(int damage);
 	int GetIsPoison();
+	void SetIsPoison(bool poison);
+	bool GetIsBoss() const;
 protected:
 	string name;
 	int health;
 	int attack;
 	bool isAlive;
-	bool isPoison;
-	bool isFire;
+	bool isPoison = false;
 	int tickCount = 0;
+	bool isBoss = false;
 };

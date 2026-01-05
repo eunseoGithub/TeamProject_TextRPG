@@ -13,6 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Monsters">
+      <UniqueIdentifier>{a1bfd5f7-3952-4083-b2ef-5af90e002357}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Characters">
+      <UniqueIdentifier>{383ce849-a96a-482c-ba09-d0e40846ec8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Items">
+      <UniqueIdentifier>{88cb08f6-af93-4a9e-8597-f41232033eee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Monsters">
+      <UniqueIdentifier>{0d6aab20-1440-4b3d-a789-8867315f7937}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Characters">
+      <UniqueIdentifier>{6b13bd73-53aa-463a-bfd3-27e2222d9d2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Items">
+      <UniqueIdentifier>{3470631f-8f2b-4dea-a659-6ba51fdc747e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -27,52 +45,10 @@
     <ClInclude Include="GameManager.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="HealthPotion.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="AttackBoost.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Goblin.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Orc.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Troll.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Slime.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Global.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Dragon.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Golem.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Medusa.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Ogre.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Ghost.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Demon.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Shop.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="FirePotion.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="PoisonPotion.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="GameUtils.h">
@@ -84,11 +60,53 @@
     <ClInclude Include="Stage.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="Warrior.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Demon.h">
+      <Filter>헤더 파일\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Dragon.h">
+      <Filter>헤더 파일\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Ghost.h">
+      <Filter>헤더 파일\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Goblin.h">
+      <Filter>헤더 파일\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Golem.h">
+      <Filter>헤더 파일\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Medusa.h">
+      <Filter>헤더 파일\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Ogre.h">
+      <Filter>헤더 파일\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Orc.h">
+      <Filter>헤더 파일\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Troll.h">
+      <Filter>헤더 파일\Monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="Slime.h">
+      <Filter>헤더 파일\Monsters</Filter>
     </ClInclude>
     <ClInclude Include="Magician.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="Warrior.h">
+      <Filter>헤더 파일\Characters</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackBoost.h">
+      <Filter>헤더 파일\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="FirePotion.h">
+      <Filter>헤더 파일\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="HealthPotion.h">
+      <Filter>헤더 파일\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="PoisonPotion.h">
+      <Filter>헤더 파일\Items</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -104,52 +122,10 @@
     <ClCompile Include="GameManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="HealthPotion.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="AttackBoost.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Goblin.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Orc.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Troll.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Slime.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Dragon.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Golem.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Medusa.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Ogre.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Ghost.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Demon.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Shop.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="FirePotion.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="PoisonPotion.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="GameUtils.cpp">
@@ -161,11 +137,53 @@
     <ClCompile Include="Stage.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Warrior.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="Demon.cpp">
+      <Filter>소스 파일\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Dragon.cpp">
+      <Filter>소스 파일\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Ghost.cpp">
+      <Filter>소스 파일\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Goblin.cpp">
+      <Filter>소스 파일\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Golem.cpp">
+      <Filter>소스 파일\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Medusa.cpp">
+      <Filter>소스 파일\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Ogre.cpp">
+      <Filter>소스 파일\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Orc.cpp">
+      <Filter>소스 파일\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Slime.cpp">
+      <Filter>소스 파일\Monsters</Filter>
+    </ClCompile>
+    <ClCompile Include="Troll.cpp">
+      <Filter>소스 파일\Monsters</Filter>
     </ClCompile>
     <ClCompile Include="Magician.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="Warrior.cpp">
+      <Filter>소스 파일\Characters</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackBoost.cpp">
+      <Filter>소스 파일\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="FirePotion.cpp">
+      <Filter>소스 파일\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthPotion.cpp">
+      <Filter>소스 파일\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="PoisonPotion.cpp">
+      <Filter>소스 파일\Items</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

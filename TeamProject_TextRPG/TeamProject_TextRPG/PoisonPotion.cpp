@@ -8,10 +8,10 @@ PoisonPotion::PoisonPotion(int dmg)
 
 string PoisonPotion::GetName() const
 {
-	return "µ¶ Æ÷¼Ç (ÅõÃ´)";
+	return "ë… í¬ì…˜ (íˆ¬ì²™)";
 }
 
 void PoisonPotion::Use(Character& character)
 {
-	cout << "µ¶ Æ÷¼ÇÀ» ÅõÃ´Çß½À´Ï´Ù! (" << damage << "µ¥¹ÌÁö)\n";
+	cout << "ë… í¬ì…˜ì„ íˆ¬ì²™í–ˆìŠµë‹ˆë‹¤! (" << damage << "ë°ë¯¸ì§€)\n";
 }
