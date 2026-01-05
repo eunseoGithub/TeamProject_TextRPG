@@ -14,7 +14,7 @@ public:
 
 	bool OnBossDefeated();
 	int GetCurrentStageIndex() const;
-
+	~StageManager();
 private:
 	vector<Stage*> stages;
 	int currentStageIdx;

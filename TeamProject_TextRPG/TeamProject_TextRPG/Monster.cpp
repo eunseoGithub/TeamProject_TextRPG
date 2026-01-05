@@ -66,6 +66,12 @@ void Monster::SetIsPoison(bool poison)
 {
 	isPoison = poison;
 }
+
+bool Monster::GetIsBoss()const
+{
+	return isBoss;
+}
+
 void Monster::PrintMonsterStatus()
 {
 	cout << "===========================\n";

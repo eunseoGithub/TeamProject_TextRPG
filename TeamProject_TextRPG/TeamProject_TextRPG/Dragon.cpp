@@ -11,7 +11,7 @@ Dragon::Dragon(int level)
 	int maxAttack = level * 15;
 	int minAttack = level * 8;
 	attack = rand() % (maxAttack - minAttack + 1) + minAttack;
-
+	isBoss = true;
 	cout << "...쿵. ...쿵! ...쿵!!!" << endl;
 	cout << "지면이 흔들리며 거대한 그림자가 당신을 집어삼킵니다." << endl;
 	cout << "최종 보스 [" << name << "]가 위압적인 모습으로 나타났습니다!" << endl;

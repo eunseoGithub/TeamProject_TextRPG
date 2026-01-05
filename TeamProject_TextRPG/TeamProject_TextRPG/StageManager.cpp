@@ -7,6 +7,13 @@ StageManager::StageManager() :currentStageIdx(0)
 	stages.push_back(new Stage(2, 20));
 }
 
+StageManager::~StageManager()
+{
+	for (Stage* s : stages)
+		delete s;
+	stages.clear();
+}
+
 Monster* StageManager::RequestNextMonster(int playerlevel)
 {
 	if (currentStageIdx < 0 || currentStageIdx >= stages.size())

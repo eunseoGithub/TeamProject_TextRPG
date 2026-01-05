@@ -46,6 +46,7 @@ Monster* Stage::SpawnBoss(int level) const
 {
 	if (stageIndex == 1) return new Dragon(level);
 	if (stageIndex == 2) return new Demon(level);
+	return nullptr;
 }
 
 Monster* Stage::SpawnRandomNormalMonster(int level) const

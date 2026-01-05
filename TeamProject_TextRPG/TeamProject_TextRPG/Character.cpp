@@ -160,7 +160,6 @@ void Character::DrinkPotion(int index, Monster& monster)
 			}
 			cout << name << "이(가) 독 포션을 사용했습니다." << endl;
 			monster.SetIsPoison(true);
-			//Attack(monster);
 			break;
 
 		case ItemType::FirePotion:
@@ -174,7 +173,7 @@ void Character::DrinkPotion(int index, Monster& monster)
 		}
 
 		inventory.erase(inventory.begin() + index);
-		delete item;
+		//delete item;
 		break;
 	}
 }

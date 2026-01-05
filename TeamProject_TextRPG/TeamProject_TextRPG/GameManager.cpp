@@ -235,7 +235,7 @@ bool GameManager::HandleMonsterDefeat()
 	}
 	if (!currentMonster->GetIsAlive())
 	{
-		bool isBoss = currentMonster->IsBoss();
+		bool isBoss = currentMonster->GetIsBoss();
 
 		currentMonster->Dead();
 		character->AddExperience(50);
@@ -260,10 +260,14 @@ bool GameManager::HandleMonsterDefeat()
 		if (isBoss)
 		{
 			bool isGameClear = stageManager.OnBossDefeated();
-			if (isGameClear)
+			if (isGameClear && character->GetLevel()>=20)
 			{
 				GameWin();
 				return false;
+			}
+			else
+			{
+				cout << "다음 스테이지로 이동합니다..." << endl;
 			}
 		}
 		
