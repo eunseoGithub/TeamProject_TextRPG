@@ -38,6 +38,7 @@ void Character::PrintCharacterStatus()
 	cout << "===========================\n";
 	cout << "이름 : " << name << endl;
 	cout << "레벨 : " << level << endl;
+	cout << "직업 : " << jobType << endl;
 	cout << "HP : " << hp << "/" << maxhp << endl;
 	cout << "공격력 : " << attack << endl;
 	cout << "보유 골드 : " << gold << endl;
@@ -69,12 +70,16 @@ void Character::TakeDamage(int damage)
 		isAlive = false;
 		Dead();
 	}
+	GameUtils::Textcolor(LIGHTRED, BLACK);
 	cout << name << "이(가) 데미지를 입었습니다." << "남은 hp :" << hp << endl;
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 }
 
 void Character::Dead()
 {
+	GameUtils::Textcolor(LIGHTRED, BLACK);
 	cout << name << "이(가) 죽었습니다." << endl;
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 }
 
 void Character::AddExperience(int amount)
@@ -103,8 +108,9 @@ void Character::LevelUp()
 	maxhp += level*5;
 	hp = maxhp;
 	attack += 10;
-
+	GameUtils::Textcolor(MAGENTA, BLACK);
 	cout << name << " 레벨 업! 현재 레벨 : " << level <<  endl;
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 }
 int Character::GetGold()
 {

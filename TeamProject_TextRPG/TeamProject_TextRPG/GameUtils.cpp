@@ -43,6 +43,7 @@ namespace GameUtils
 
         return w;
     }
+
     bool ReadInt(const char* prompt, int& out)
     {
         while (true)
@@ -62,4 +63,9 @@ namespace GameUtils
         return false;
     }
    
+    void Textcolor(int foreground, int background)
+    {
+        int color = foreground + background * 16;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+    }
 }
