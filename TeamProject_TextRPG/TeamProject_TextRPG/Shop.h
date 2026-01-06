@@ -4,6 +4,7 @@
 #include <memory>
 #include "GameUtils.h"
 
+#include "Item.h"
 class Character;
 class Item;
 
@@ -12,6 +13,7 @@ struct ShopItem
 	int id;
 	string name;
 	int price;
+	ItemType type;
 };
 
 class Shop

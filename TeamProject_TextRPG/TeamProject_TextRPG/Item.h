@@ -30,5 +30,5 @@ public:
 
 	virtual string GetName() const = 0;
 	virtual void Use(Character& character) {}
-	virtual void Use(Monster& monster) {}
+	virtual void Use(Character& character,Monster& monster) {}
 };

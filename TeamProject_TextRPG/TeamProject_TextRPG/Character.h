@@ -58,6 +58,6 @@ protected:
 	vector<Item*> inventory;
 
 	bool isAlive;
-	
+	string jobType;
 	Shop* shop = nullptr;
 };

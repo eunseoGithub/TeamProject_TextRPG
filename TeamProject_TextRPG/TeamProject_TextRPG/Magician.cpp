@@ -2,9 +2,10 @@
 
 Magician::Magician(string name) : Character(name)
 {
-	maxhp = 150000;
+	maxhp = 250;
 	hp = maxhp;
 	attack = 50;
+	jobType = "Magician";
 }
 
 void Magician::Attack(Monster& monster)

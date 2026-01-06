@@ -1,6 +1,21 @@
 #include "Character.h"
 #include "Shop.h"
 
+#include "GameUtils.h"
+#define MAX_EXPERIENCE 100
+Character::Character(string name)
+{
+	this->name = name;
+	level = 1;
+	hp = 0;
+	maxhp = 0;
+	attack = 0;
+	experience = 0;
+	gold = 0;
+	bonusAttack = 0;
+
+	isAlive = true;
+}
 Character::~Character()
 {
 	if (shop)
@@ -15,21 +30,6 @@ Character::~Character()
 	}
 	inventory.clear();
 }
-
-Character::Character(string name)
-{
-	this->name = name;
-	level = 1;
-	hp = 0;
-	maxhp = 0;
-	attack = 0;
-	experience = 0;
-	gold = 0;
-	bonusAttack = 0;
-
-	isAlive = true;
-}
-
 void Character::PrintCharacterStatus()
 {
 	cout << "===========================\n";
@@ -37,9 +37,11 @@ void Character::PrintCharacterStatus()
 	cout << "===========================\n";
 	cout << "이름 : " << name << endl;
 	cout << "레벨 : " << level << endl;
+	cout << "직업 : " << jobType << endl;
 	cout << "HP : " << hp << "/" << maxhp << endl;
 	cout << "공격력 : " << attack << endl;
 	cout << "보유 골드 : " << gold << endl;
+	cout << "경험치 : " << experience << "/" << MAX_EXPERIENCE << endl;
 	cout << "===========================\n";
 }
 
@@ -55,7 +57,6 @@ void Character::SetShop(Shop* s)
 
 void Character::PotionAttack(Monster& monster, int damage)
 {
-	cout << name << "이(가) 화염 포션을 사용했습니다." << endl;
 	monster.TakeDamage(damage);
 }
 
@@ -68,12 +69,16 @@ void Character::TakeDamage(int damage)
 		isAlive = false;
 		Dead();
 	}
+	GameUtils::Textcolor(LIGHTRED, BLACK);
 	cout << name << "이(가) 데미지를 입었습니다." << "남은 hp :" << hp << endl;
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 }
 
 void Character::Dead()
 {
+	GameUtils::Textcolor(LIGHTRED, BLACK);
 	cout << name << "이(가) 죽었습니다." << endl;
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 }
 
 void Character::AddExperience(int amount)
@@ -89,7 +94,7 @@ void Character::AddGold(int amount)
 
 void Character::CheckLevelUp()
 {
-	if (experience >= 100)
+	while (experience >= 100)
 	{
 		experience -= 100;
 		LevelUp();
@@ -99,11 +104,12 @@ void Character::CheckLevelUp()
 void Character::LevelUp()
 {
 	level++;
-	maxhp += 20;
+	maxhp += level*5;
 	hp = maxhp;
-	attack += 5;
-
-	cout << name << "***레벨 업! 현재 레벨 : " << level << "***" << endl;
+	attack += 10;
+	GameUtils::Textcolor(MAGENTA, BLACK);
+	cout << name << " 레벨 업! 현재 레벨 : " << level <<  endl;
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 }
 int Character::GetGold()
 {
@@ -147,7 +153,7 @@ void Character::DrinkPotion(int index, Monster& monster)
 		if (index < 0 || index >= (int)inventory.size())
 		{
 			cout << "잘못된 아이템 선택입니다. 다시 선택해주세요 : ";
-			cin >> index;
+			GameUtils::ReadInt("잘못된 아이템 선택입니다. 다시 선택해주세요 : ", index);
 			continue;
 		}
 
@@ -169,7 +175,8 @@ void Character::DrinkPotion(int index, Monster& monster)
 			if (monster.GetIsPoison())
 			{
 				cout << "이미 적이 중독 상태입니다. 다른 아이템을 선택해주세요. : ";
-				cin >> index;
+				GameUtils::ReadInt("이미 적이 중독 상태입니다. 다른 아이템을 선택해주세요. : ", index);
+				
 				continue;
 			}
 			cout << name << "이(가) 독 포션을 사용했습니다." << endl;
@@ -177,12 +184,12 @@ void Character::DrinkPotion(int index, Monster& monster)
 			break;
 
 		case ItemType::FirePotion:
-			item->Use(monster);
+			item->Use(*this,monster);
 			break;
 
 		default:
 			cout << "사용할 수 없는 아이템입니다. 다시 선택해주세요 : ";
-			cin >> index;
+			GameUtils::ReadInt("사용할 수 없는 아이템입니다. 다시 선택해주세요 : ", index);
 			continue;
 		}
 

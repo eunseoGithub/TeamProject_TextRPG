@@ -47,6 +47,7 @@ GameManager::GameManager()
 
 bool GameManager::GamePlay()
 {
+	GameUtils::Textcolor(LIGHTCYAN, BLACK);
 	currentMonster = stageManager.RequestNextMonster(character->GetLevel());
 	if (!currentMonster)
 	{
@@ -54,11 +55,11 @@ bool GameManager::GamePlay()
 		return false;
 	}
 	totalMonster.push_back(currentMonster->GetName());
-
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 	while (true)
 	{
 		CharacterAct();
-		GameUtils::WaitMs(500);
+		GameUtils::WaitMs(900);
 		
 		if(currentMonster->GetIsPoison())
 			currentMonster->TakeTickDamage(character->GetLevel() * 5);
@@ -67,19 +68,21 @@ bool GameManager::GamePlay()
 			break;
 		
 		MonsterAct();
-		GameUtils::WaitMs(500);
+		GameUtils::WaitMs(900);
 		
 		if(!HandleCharacterDefeat())
 			return false;
 		
-		GameUtils::WaitMs(500);
+		GameUtils::WaitMs(900);
 		
 	}
 	character->ResetTempAttack();
+	GameUtils::Textcolor(BROWN, BLACK);
 	if (VisitShop())
 	{
 		shopManager->ShowMenu(*character);
 	}
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 	return true;
 }
 
@@ -107,12 +110,12 @@ void GameManager::DisplayInventory()const
 
 bool GameManager::CreateCharacter()
 {
+	GameUtils::Textcolor(CYAN, BLACK);
 	cout << "\n===========================\n";
 	cout << "  [ 새로운 모험가 생성 ]                 \n";
 	cout << "===========================\n";
 	cout << "모험가의 이름을 정해주세요 : ";
-	//string name;
-	//cin >> name;
+	
 	wstring name= GameUtils::ReadWLine();
 	string realName = WStringToUTF8(name);
 	while (true)
@@ -124,9 +127,8 @@ bool GameManager::CreateCharacter()
 		cout << "1. 전사 (Warrior)\n";
 		cout << "2. 마법사 (Magician)\n";
 		cout << "===========================\n";
-		cout << "모험가의 직업을 정해주세요(1 선택 시 전사) :";
-		/*string input;
-		cin >> input;*/
+		cout << "모험가의 직업을 정해주세요(1 선택 시 전사) : ";
+
 		wstring input = GameUtils::ReadWLine();
 		if (input == L"1" || input == L"전사" || input == L"warrior" || input == L"Warrior")
 		{
@@ -147,7 +149,7 @@ bool GameManager::CreateCharacter()
 		cout << "캐릭터 생성에 실패하였습니다. 게임을 종료합니다." << endl;
 		return false;
 	}
-
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 	return true;
 }
 
@@ -164,9 +166,8 @@ void GameManager::CharacterAct()
 			cout << "===========================\n";
 			cout << "   [ 아 이 템 선 택 창 ]                         \n";
 			cout << "===========================\n";
-			cout << "사용할 포션 번호를 입력하세요.";
 			int index;
-			cin >> index;
+			GameUtils::ReadInt("사용할 포션 번호를 입력하세요. : ", index);
 			character->DrinkPotion(index, *currentMonster);
 		}
 		else
@@ -174,26 +175,28 @@ void GameManager::CharacterAct()
 			cout << "인벤토리에 아무것도 없습니다." << endl;
 		}
 	}
-	GameUtils::WaitMs(500);
+	GameUtils::WaitMs(900);
 	Render();
 }
 
 void GameManager::MonsterAct()
 {
 	currentMonster->Attack(*character);
-	GameUtils::WaitMs(500);
+	GameUtils::WaitMs(900);
 	Render();
 }
 
 void GameManager::Render() const
 {
 	GameUtils::ClearScreen();
+	GameUtils::Textcolor(LIGHTCYAN, BLACK);
 	DisplayInventory();
 	character->PrintCharacterStatus();
 	if (currentMonster != nullptr)
 	{
 		currentMonster->PrintMonsterStatus();
 	}
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 }
 
 void GameManager::GameWin()
@@ -221,10 +224,17 @@ void GameManager::PrintTotalMonster() const
 	cout << "  [ 싸운 몬스터 목록 ]                 \n";
 	cout << "===========================\n";
 	int index = 1;
+	map<string, int> countMonster;
 	for (auto& mon : totalMonster)
 	{
-		cout << index++ << ". " << mon << endl;
+		//cout << index++ << ". " << mon << endl;
+		countMonster[mon]++;
 	}
+	for (auto& mon : countMonster)
+	{
+		cout << mon.first << " : " << mon.second << "마리" << endl;
+	}
+	
 }
 
 bool GameManager::HandleMonsterDefeat()
@@ -239,7 +249,7 @@ bool GameManager::HandleMonsterDefeat()
 
 		currentMonster->Dead();
 		character->AddExperience(50);
-		GameUtils::WaitMs(500);
+		GameUtils::WaitMs(700);
 		
 		int randomGold = rand() % 11 + 10;
 		character->AddGold(randomGold);
@@ -282,7 +292,7 @@ bool GameManager::HandleCharacterDefeat()
 	{
 		character->Dead();
 		GameLose();
-		GameUtils::WaitMs(500);
+		GameUtils::WaitMs(700);
 		return false;
 	}
 	return true;
@@ -312,7 +322,7 @@ bool GameManager::VisitShop()
 	cout << "\n===========================\n";
 	cout << "  [ 상 점 방 문 여 부]                 \n";
 	cout << "===========================\n";
-	cout << "상점을 방문을 하시겠습니까? >(Yes : 1, No : 0)";
+	cout << "상점을 방문을 하시겠습니까?(Yes : 1, No : 0) : ";
 	
 	string input;
 	cin >> input;
@@ -323,7 +333,7 @@ bool GameManager::VisitShop()
 	if (input == "0" || input == "N0" || input == "no" || input == "N" || input == "n")
 		return false;
 	
-	cout << "잘못된 입력입니다. 다시 입력해주세요" << endl;
+	cout << "잘못된 입력입니다. 다시 입력해주세요 :" << endl;
 	return VisitShop();
 
 }

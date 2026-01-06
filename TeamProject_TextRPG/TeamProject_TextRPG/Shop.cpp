@@ -15,10 +15,10 @@ static const ShopItem* FindShopItem(const vector<ShopItem>& items, int id)
 
 Shop::Shop()
 {
-	items.push_back({ 1, "체력 포션 (+ 50)", 20 });
-	items.push_back({ 2, "공격력 포션 (+ 10)", 10 });
-	items.push_back({ 3, "화염 포션 (투척)", 50});
-	items.push_back({ 4, "독 포션 (투척)",30 });
+	items.push_back({ 1, "체력 포션 (+ 50)", 20,ItemType::HealthPotion });
+	items.push_back({ 2, "공격력 포션 (+ 10)", 10 , ItemType::AttackBoost });
+	items.push_back({ 3, "화염 포션 (투척)", 50, ItemType::FirePotion });
+	items.push_back({ 4, "독 포션 (투척)",30, ItemType::PoisonPotion });
 }
 
 void Shop::PrintShopItems() const
@@ -26,7 +26,7 @@ void Shop::PrintShopItems() const
 	cout << "== 상점 아이템 목록 ==\n";
 	for (const auto& it : items)
 	{
-		cout << "[" << it.id << "]" << it.name << " - 가격: " << it.price << "G\n";
+		cout << "[" << it.id << "] " << it.name << " - 가격: " << it.price << "G\n";
 	}
 }
 
@@ -45,10 +45,9 @@ void Shop::ShowMenu(Character& player)
 		cout << "1. 아이템 사기\n";
 		cout << "2. 아이템 팔기\n";
 		cout << "3. 상점 나가기\n";
-		cout << "선택: ";
 
 		int choice;
-		cin >> choice;
+		GameUtils::ReadInt("선택 : ", choice);
 
 		if (choice == 0)
 		{
@@ -60,9 +59,9 @@ void Shop::ShowMenu(Character& player)
 		{
 			GameUtils::ClearScreen();
 			PrintShopItems();
-			cout << "구매할 아이템 번호 입력 : ";
+			cout << "[0] 나가기\n" << endl;
 			int id;
-			cin >> id;
+			GameUtils::ReadInt("구매할 아이템 번호 입력 : ", id);
 			BuyItem(player, id);
 			GameUtils::WaitMs(700);
 		}
@@ -76,19 +75,21 @@ void Shop::ShowMenu(Character& player)
 			if (inv.empty())
 			{
 				cout << "(비어있음)\n";
+				cout << "0) 나가기\n" << endl;
 			}
 			else
 			{
+				
 				for (int i = 0; i < (int)inv.size(); ++i)
 				{
-					cout << i << ") " << inv[i]->GetName() << "\n";
+					cout << i +1<< ") " << inv[i]->GetName() << "\n";
 				}
+				cout << "0) 나가기\n" << endl;
 			}
 
-			cout << "판매할 아이템 번호 입력: ";
 			int inventoryIndex;
-			cin >> inventoryIndex;
-			SellItem(player, inventoryIndex);
+			GameUtils::ReadInt("판매할 아이템 번호 입력 : ", inventoryIndex);
+			SellItem(player, inventoryIndex-1);
 			GameUtils::WaitMs(700);
 		}
 		else if (choice == 3)
@@ -147,6 +148,11 @@ void Shop::ReleaseItem(Item* item)
 
 bool Shop::BuyItem(Character& player, int itemId)
 {
+	if (itemId == 0)
+	{
+		cout << "구매 창에서 나갑니다." << endl;
+		return false;
+	}
 	const ShopItem* item = FindShopItem(items, itemId);
 	if (!item)
 	{
@@ -161,10 +167,7 @@ bool Shop::BuyItem(Character& player, int itemId)
 
 	Item* bought = AcquireItemById(itemId);
 	if (!bought)
-	{
-		cout << "아이템 생성에 실패했습니다.\n";
-		return false;
-	}
+	Item* bought = nullptr;
 
 	player.AddGold(-item->price);
 	player.AddItem(bought);
@@ -176,6 +179,11 @@ bool Shop::BuyItem(Character& player, int itemId)
 
 bool Shop::SellItem(Character& player, int inventoryIndex)
 {
+	if (inventoryIndex == -1)
+	{
+		cout << "판매 창에서 나갑니다." << endl;
+		return false;
+	}
 	auto& inv = player.GetInventory();
 
 	if (inv.empty())
@@ -191,12 +199,13 @@ bool Shop::SellItem(Character& player, int inventoryIndex)
 	}
 
 	Item* target = inv[inventoryIndex];
-	string name = target->GetName();
+	ItemType targetType = target->GetType();
+	string targetName = target->GetName();
 	int originalPrice = -1;
 
 	for (const auto& it : items)
 	{
-		if (it.name == name)
+		if (it.type == targetType)
 		{
 			originalPrice = it.price;
 			break;
@@ -218,7 +227,7 @@ bool Shop::SellItem(Character& player, int inventoryIndex)
 
 	player.AddGold(sellPrice);
 
-	cout << "[ 판매 ]" << name << "판매 완료! (+" << sellPrice << "G\n";
+	cout << "[ 판매 ]" << targetName << "판매 완료! (+" << sellPrice << "G\n";
 	GameUtils::WaitMs(400);
 	return true;
 }
