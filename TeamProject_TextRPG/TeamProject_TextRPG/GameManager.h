@@ -1,25 +1,28 @@
 #pragma once
 #include <vector>
+#include <map>
+#include "GameUtils.h"
+#include "Global.h"
+
 #include "Monster.h"
 #include "Character.h"
-#include "Global.h"
-#include "Goblin.h"
-#include "Orc.h"
-#include "Slime.h"
-#include "Troll.h"
-#include "Boss.h"
+
 #include "Item.h"
 #include "AttackBoost.h"
 #include "HealthPotion.h"
+#include "PoisonPotion.h"
+#include "FirePotion.h"
 #include "Shop.h"
-#include "GameUtils.h"
 
+#include "StageManager.h"
+
+#include "Warrior.h"
+#include "Magician.h"
 class GameManager
 {
 public:
 	GameManager();
 	bool CreateCharacter();
-	void GenerateMonster(int level);
 	bool GamePlay();
 	void Render()const;
 private:
@@ -38,5 +41,6 @@ private:
 	Monster* currentMonster;
 	vector<string> totalMonster;
 	Shop* shopManager;
+	StageManager stageManager;
 };
 

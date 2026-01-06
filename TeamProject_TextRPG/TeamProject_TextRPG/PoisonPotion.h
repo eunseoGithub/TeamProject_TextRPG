@@ -1,13 +1,13 @@
 #pragma once
 #include "Item.h"
 
-class HealthPotion : public Item
+class PoisonPotion : public Item
 {
 private:
-	int healAmount;
+	int damage;
 
 public:
-	HealthPotion(int heal = 50);
+	PoisonPotion(int dmg = 30);
 
 	string GetName() const override;
 	void Use(Character& character) override;

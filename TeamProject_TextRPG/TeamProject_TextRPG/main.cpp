@@ -3,10 +3,13 @@
 
 int main()
 {
+	SetConsoleOutputCP(CP_UTF8);
+	
 	GameManager* game = new GameManager();
 	if (!game->CreateCharacter())
 		return 0;
 	system("cls");
+	
 	while (true)
 	{
 		game->Render();
