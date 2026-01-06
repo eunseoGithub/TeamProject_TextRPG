@@ -76,13 +76,16 @@ bool GameManager::GamePlay()
 		GameUtils::WaitMs(900);
 		
 	}
-	character->ResetTempAttack();
-	GameUtils::Textcolor(BROWN, BLACK);
-	if (VisitShop())
+	if (character != nullptr)
 	{
-		shopManager->ShowMenu(*character);
+		character->ResetTempAttack();
+		GameUtils::Textcolor(BROWN, BLACK);
+		if (VisitShop())
+		{
+			shopManager->ShowMenu(*character);
+		}
+		GameUtils::Textcolor(LIGHTGRAY, BLACK);
 	}
-	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 	return true;
 }
 

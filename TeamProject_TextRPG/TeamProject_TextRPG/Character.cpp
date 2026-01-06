@@ -152,7 +152,6 @@ void Character::DrinkPotion(int index, Monster& monster)
 	{
 		if (index < 0 || index >= (int)inventory.size())
 		{
-			cout << "잘못된 아이템 선택입니다. 다시 선택해주세요 : ";
 			GameUtils::ReadInt("잘못된 아이템 선택입니다. 다시 선택해주세요 : ", index);
 			continue;
 		}
@@ -174,7 +173,6 @@ void Character::DrinkPotion(int index, Monster& monster)
 		case ItemType::PoisonPotion:
 			if (monster.GetIsPoison())
 			{
-				cout << "이미 적이 중독 상태입니다. 다른 아이템을 선택해주세요. : ";
 				GameUtils::ReadInt("이미 적이 중독 상태입니다. 다른 아이템을 선택해주세요. : ", index);
 				
 				continue;
@@ -188,7 +186,6 @@ void Character::DrinkPotion(int index, Monster& monster)
 			break;
 
 		default:
-			cout << "사용할 수 없는 아이템입니다. 다시 선택해주세요 : ";
 			GameUtils::ReadInt("사용할 수 없는 아이템입니다. 다시 선택해주세요 : ", index);
 			continue;
 		}
