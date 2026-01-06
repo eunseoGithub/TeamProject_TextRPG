@@ -1,21 +1,6 @@
 #include "Character.h"
 #include "Shop.h"
 
-Character::~Character()
-{
-	if (shop)
-	{
-		for (Item* it : inventory)
-			shop->ReleaseItem(it);
-	}
-	else
-	{
-		for (Item* it : inventory)
-			delete it;
-	}
-	inventory.clear();
-}
-
 #include "GameUtils.h"
 #define MAX_EXPERIENCE 100
 Character::Character(string name)
@@ -30,6 +15,20 @@ Character::Character(string name)
 	bonusAttack = 0;
 
 	isAlive = true;
+}
+Character::~Character()
+{
+	if (shop)
+	{
+		for (Item* it : inventory)
+			shop->ReleaseItem(it);
+	}
+	else
+	{
+		for (Item* it : inventory)
+			delete it;
+	}
+	inventory.clear();
 }
 void Character::PrintCharacterStatus()
 {

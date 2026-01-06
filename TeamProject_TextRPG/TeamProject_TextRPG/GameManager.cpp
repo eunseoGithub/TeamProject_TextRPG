@@ -224,10 +224,17 @@ void GameManager::PrintTotalMonster() const
 	cout << "  [ 싸운 몬스터 목록 ]                 \n";
 	cout << "===========================\n";
 	int index = 1;
+	map<string, int> countMonster;
 	for (auto& mon : totalMonster)
 	{
-		cout << index++ << ". " << mon << endl;
+		//cout << index++ << ". " << mon << endl;
+		countMonster[mon]++;
 	}
+	for (auto& mon : countMonster)
+	{
+		cout << mon.first << " : " << mon.second << "마리" << endl;
+	}
+	
 }
 
 bool GameManager::HandleMonsterDefeat()

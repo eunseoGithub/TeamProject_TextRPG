@@ -168,12 +168,6 @@ bool Shop::BuyItem(Character& player, int itemId)
 	Item* bought = AcquireItemById(itemId);
 	if (!bought)
 	Item* bought = nullptr;
-	
-	if (item->id == 1)
-	{
-		cout << "아이템 생성에 실패했습니다.\n";
-		return false;
-	}
 
 	player.AddGold(-item->price);
 	player.AddItem(bought);
