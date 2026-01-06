@@ -123,7 +123,7 @@ bool GameManager::CreateCharacter()
 		cout << "1. 전사 (Warrior)\n";
 		cout << "2. 마법사 (Magician)\n";
 		cout << "===========================\n";
-		cout << "모험가의 직업을 정해주세요(1 선택 시 전사) :";
+		cout << "모험가의 직업을 정해주세요(1 선택 시 전사) : ";
 
 		wstring input = GameUtils::ReadWLine();
 		if (input == L"1" || input == L"전사" || input == L"warrior" || input == L"Warrior")
@@ -309,7 +309,7 @@ bool GameManager::VisitShop()
 	cout << "\n===========================\n";
 	cout << "  [ 상 점 방 문 여 부]                 \n";
 	cout << "===========================\n";
-	cout << "상점을 방문을 하시겠습니까? >(Yes : 1, No : 0)";
+	cout << "상점을 방문을 하시겠습니까?(Yes : 1, No : 0) : ";
 	
 	string input;
 	cin >> input;
@@ -320,7 +320,7 @@ bool GameManager::VisitShop()
 	if (input == "0" || input == "N0" || input == "no" || input == "N" || input == "n")
 		return false;
 	
-	cout << "잘못된 입력입니다. 다시 입력해주세요" << endl;
+	cout << "잘못된 입력입니다. 다시 입력해주세요 :" << endl;
 	return VisitShop();
 
 }

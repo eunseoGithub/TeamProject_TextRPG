@@ -16,6 +16,8 @@ Character::~Character()
 	inventory.clear();
 }
 
+#include "GameUtils.h"
+#define MAX_EXPERIENCE 100
 Character::Character(string name)
 {
 	this->name = name;
@@ -29,10 +31,6 @@ Character::Character(string name)
 
 	isAlive = true;
 }
-Character::~Character()
-{
-	inventory.clear();
-}
 void Character::PrintCharacterStatus()
 {
 	cout << "===========================\n";
@@ -43,6 +41,7 @@ void Character::PrintCharacterStatus()
 	cout << "HP : " << hp << "/" << maxhp << endl;
 	cout << "공격력 : " << attack << endl;
 	cout << "보유 골드 : " << gold << endl;
+	cout << "경험치 : " << experience << "/" << MAX_EXPERIENCE << endl;
 	cout << "===========================\n";
 }
 
@@ -58,7 +57,6 @@ void Character::SetShop(Shop* s)
 
 void Character::PotionAttack(Monster& monster, int damage)
 {
-	cout << name << "이(가) 화염 포션을 사용했습니다." << endl;
 	monster.TakeDamage(damage);
 }
 
@@ -102,11 +100,11 @@ void Character::CheckLevelUp()
 void Character::LevelUp()
 {
 	level++;
-	maxhp += 20;
+	maxhp += level*5;
 	hp = maxhp;
-	attack += 5;
+	attack += 10;
 
-	cout << name << "***레벨 업! 현재 레벨 : " << level << "***" << endl;
+	cout << name << " 레벨 업! 현재 레벨 : " << level <<  endl;
 }
 int Character::GetGold()
 {
@@ -181,7 +179,7 @@ void Character::DrinkPotion(int index, Monster& monster)
 			break;
 
 		case ItemType::FirePotion:
-			item->Use(monster);
+			item->Use(*this,monster);
 			break;
 
 		default:

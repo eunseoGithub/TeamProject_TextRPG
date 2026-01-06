@@ -10,5 +10,5 @@ public:
 	FirePotion(int dmg = 50);
 
 	string GetName() const override;
-	void Use(Monster& monster) override;
+	void Use(Character& character, Monster& monster) override;
 };
