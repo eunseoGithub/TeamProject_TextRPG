@@ -56,6 +56,6 @@ protected:
 	vector<Item*> inventory;
 
 	bool isAlive;
-	
+	string jobType;
 };
 

@@ -47,6 +47,7 @@ GameManager::GameManager()
 
 bool GameManager::GamePlay()
 {
+	GameUtils::Textcolor(LIGHTCYAN, BLACK);
 	currentMonster = stageManager.RequestNextMonster(character->GetLevel());
 	if (!currentMonster)
 	{
@@ -54,11 +55,11 @@ bool GameManager::GamePlay()
 		return false;
 	}
 	totalMonster.push_back(currentMonster->GetName());
-
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 	while (true)
 	{
 		CharacterAct();
-		GameUtils::WaitMs(500);
+		GameUtils::WaitMs(900);
 		
 		if(currentMonster->GetIsPoison())
 			currentMonster->TakeTickDamage(character->GetLevel() * 5);
@@ -67,19 +68,21 @@ bool GameManager::GamePlay()
 			break;
 		
 		MonsterAct();
-		GameUtils::WaitMs(500);
+		GameUtils::WaitMs(900);
 		
 		if(!HandleCharacterDefeat())
 			return false;
 		
-		GameUtils::WaitMs(500);
+		GameUtils::WaitMs(900);
 		
 	}
 	character->ResetTempAttack();
+	GameUtils::Textcolor(BROWN, BLACK);
 	if (VisitShop())
 	{
 		shopManager->ShowMenu(*character);
 	}
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 	return true;
 }
 
@@ -107,11 +110,12 @@ void GameManager::DisplayInventory()const
 
 bool GameManager::CreateCharacter()
 {
+	GameUtils::Textcolor(CYAN, BLACK);
 	cout << "\n===========================\n";
 	cout << "  [ 새로운 모험가 생성 ]                 \n";
 	cout << "===========================\n";
 	cout << "모험가의 이름을 정해주세요 : ";
-
+	
 	wstring name= GameUtils::ReadWLine();
 	string realName = WStringToUTF8(name);
 	while (true)
@@ -145,7 +149,7 @@ bool GameManager::CreateCharacter()
 		cout << "캐릭터 생성에 실패하였습니다. 게임을 종료합니다." << endl;
 		return false;
 	}
-
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 	return true;
 }
 
@@ -171,26 +175,28 @@ void GameManager::CharacterAct()
 			cout << "인벤토리에 아무것도 없습니다." << endl;
 		}
 	}
-	GameUtils::WaitMs(500);
+	GameUtils::WaitMs(900);
 	Render();
 }
 
 void GameManager::MonsterAct()
 {
 	currentMonster->Attack(*character);
-	GameUtils::WaitMs(500);
+	GameUtils::WaitMs(900);
 	Render();
 }
 
 void GameManager::Render() const
 {
 	GameUtils::ClearScreen();
+	GameUtils::Textcolor(LIGHTCYAN, BLACK);
 	DisplayInventory();
 	character->PrintCharacterStatus();
 	if (currentMonster != nullptr)
 	{
 		currentMonster->PrintMonsterStatus();
 	}
+	GameUtils::Textcolor(LIGHTGRAY, BLACK);
 }
 
 void GameManager::GameWin()
@@ -236,7 +242,7 @@ bool GameManager::HandleMonsterDefeat()
 
 		currentMonster->Dead();
 		character->AddExperience(50);
-		GameUtils::WaitMs(500);
+		GameUtils::WaitMs(700);
 		
 		int randomGold = rand() % 11 + 10;
 		character->AddGold(randomGold);
@@ -279,7 +285,7 @@ bool GameManager::HandleCharacterDefeat()
 	{
 		character->Dead();
 		GameLose();
-		GameUtils::WaitMs(500);
+		GameUtils::WaitMs(700);
 		return false;
 	}
 	return true;
